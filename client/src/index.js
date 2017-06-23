@@ -1,8 +1,14 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const appName = (
+const landingPage = (
   <div className="container">
     <div class="header clearfix">
       <nav>
@@ -31,6 +37,6 @@ const appName = (
 );
 
 ReactDOM.render(
-  appName,
+  landingPage,
   document.getElementById('root')
 );
