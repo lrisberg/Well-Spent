@@ -11,16 +11,40 @@ import SignupPage from './components/signupPage.js'
 import SplashPage from './components/splashPage.js'
 import Navbar from './components/navBar.js'
 
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      token: localStorage.getItem('token')
+    }
+
+    this.saveToken = this.saveToken.bind(this);
+  }
+
+  saveToken(token) {
+    localStorage.setItem('token', token);
+    this.setState({
+      token: token
+    });
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="container">
+          <Navbar loggedIn={this.state.token !== null} />
+          <div>
+            <Route path="/splash" component={SplashPage}/>
+            <Route path="/signup" component={SignupPage}/>
+            <Route path="/login" render={(props) => <LoginPage onLogin={this.saveToken} />}/>
+          </div>
+        </div>
+      </Router>
+    )
+  }
+}
+
 ReactDOM.render(
-  <Router>
-    <div className="container">
-      <Navbar />
-      <div>
-        <Route path="/splash" component={SplashPage}/>
-        <Route path="/signup" component={SignupPage}/>
-        <Route path="/login" component={LoginPage}/>
-      </div>
-    </div>
-  </Router>,
+  <App />,
   document.getElementById('root')
 );

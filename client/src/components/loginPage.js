@@ -32,7 +32,7 @@ export default class LoginPage extends React.Component {
       password: this.state.password
     })
     .then((response) => {
-      console.log(response);
+      this.props.onLogin(response.data);
     })
     .catch((error) => {
       console.error(error);
