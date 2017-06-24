@@ -85,6 +85,30 @@ class SignupPage extends React.Component {
   };
 }
 
+class LoginPage extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <form>
+          <div className="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" />
+          </div>
+          <div className="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+          </div>
+          <button type="submit" className="btn btn-default">Log In</button>
+        </form>
+      </div>
+    );
+  };
+}
+
 class Navbar extends React.Component {
   constructor() {
     super();
@@ -101,6 +125,9 @@ class Navbar extends React.Component {
             <li role="presentation">
               <Link to="/signup">Sign Up</Link>
             </li>
+            <li role="presentation">
+              <Link to="/login">Log In</Link>
+            </li>
           </ul>
         </nav>
         <h3 className="text-muted">Well Spent</h3>
@@ -116,6 +143,7 @@ ReactDOM.render(
       <div>
         <Route path="/splash" component={LandingPage}/>
         <Route path="/signup" component={SignupPage}/>
+        <Route path="/login" component={LoginPage}/>
       </div>
     </div>
   </Router>,
