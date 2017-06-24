@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
@@ -20,10 +19,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+// Serve static files from the React app
+// https://daveceddia.com/create-react-app-express-production/
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// app.use('/', index);
 app.use('/api/users', users);
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+// https://daveceddia.com/create-react-app-express-production/
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
