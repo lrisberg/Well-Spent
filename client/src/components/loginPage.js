@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-export default class LoginPage extends React.Component {
+class LoginPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -33,6 +34,7 @@ export default class LoginPage extends React.Component {
     })
     .then((response) => {
       this.props.onLogin(response.data);
+      this.props.history.push('/dashboard');
     })
     .catch((error) => {
       console.error(error);
@@ -58,3 +60,5 @@ export default class LoginPage extends React.Component {
     );
   };
 }
+
+export default withRouter(LoginPage);

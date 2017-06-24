@@ -10,6 +10,7 @@ import LoginPage from './components/loginPage.js';
 import SignupPage from './components/signupPage.js'
 import SplashPage from './components/splashPage.js'
 import Navbar from './components/navBar.js'
+import Dashboard from './components/dashboard.js'
 
 class App extends React.Component {
   constructor() {
@@ -45,6 +46,7 @@ class App extends React.Component {
             <Route path="/splash" component={SplashPage}/>
             <Route path="/signup" component={SignupPage}/>
             <Route path="/login" render={(props) => <LoginPage onLogin={this.saveToken} />}/>
+            <Route path="/dashboard" component={Dashboard}/>
           </div>
         </div>
       </Router>
