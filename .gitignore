@@ -1,5 +1,5 @@
-server/node_modules
-server/build
+node_modules
+build
 client/node_modules
 client/build
 .DS_Store
