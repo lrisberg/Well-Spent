@@ -1,11 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
+  constructor() {
+    super();
+
+    this.signOutFunc = this.signOutFunc.bind(this);
+  }
+
+  signOutFunc() {
+    this.props.onSignOut();
+    this.props.history.push('/splash');
+  }
 
   render() {
     let signUpButton = null;
     let logInButton = null;
+    let signOutButton = null;
     if (!this.props.loggedIn) {
       signUpButton = (
         <li role="presentation">
@@ -15,6 +27,13 @@ export default class Navbar extends React.Component {
       logInButton = (
         <li role="presentation">
           <Link to="/login">Log In</Link>
+        </li>
+      )
+    }
+    else {
+      signOutButton = (
+        <li role="presentation">
+          <a href="#" onClick={this.signOutFunc}>Sign Out</a>
         </li>
       )
     }
@@ -28,6 +47,7 @@ export default class Navbar extends React.Component {
             </li>
             {signUpButton}
             {logInButton}
+            {signOutButton}
           </ul>
         </nav>
         <h3 className="text-muted">Well Spent</h3>
@@ -35,3 +55,5 @@ export default class Navbar extends React.Component {
     )
   }
 }
+
+export default withRouter(Navbar);

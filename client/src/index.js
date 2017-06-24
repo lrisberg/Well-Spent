@@ -19,6 +19,7 @@ class App extends React.Component {
     }
 
     this.saveToken = this.saveToken.bind(this);
+    this.destroyToken = this.destroyToken.bind(this);
   }
 
   saveToken(token) {
@@ -28,11 +29,18 @@ class App extends React.Component {
     });
   }
 
+  destroyToken() {
+    localStorage.removeItem('token');
+    this.setState({
+      token: null
+    });
+  }
+
   render() {
     return (
       <Router>
         <div className="container">
-          <Navbar loggedIn={this.state.token !== null} />
+          <Navbar loggedIn={this.state.token !== null} onSignOut={this.destroyToken}/>
           <div>
             <Route path="/splash" component={SplashPage}/>
             <Route path="/signup" component={SignupPage}/>
