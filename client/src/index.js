@@ -11,6 +11,8 @@ import SignupPage from './components/signupPage.js'
 import SplashPage from './components/splashPage.js'
 import Navbar from './components/navBar.js'
 import Dashboard from './components/dashboard.js'
+import Purchases from './components/purchases.js'
+import AddPurchaseForm from './components/addPurchaseForm.js'
 
 class App extends React.Component {
   constructor() {
@@ -43,10 +45,12 @@ class App extends React.Component {
         <div className="container">
           <Navbar loggedIn={this.state.token !== null} onSignOut={this.destroyToken}/>
           <div>
-            <Route path="/splash" component={SplashPage}/>
+            <Route exact path="/" component={SplashPage}/>
             <Route path="/signup" component={SignupPage}/>
             <Route path="/login" render={(props) => <LoginPage onLogin={this.saveToken} />}/>
             <Route path="/dashboard" component={Dashboard}/>
+            <Route exact path="/purchases" component={Purchases}/>
+            <Route exact path="/purchases/new" component={AddPurchaseForm}/>
           </div>
         </div>
       </Router>

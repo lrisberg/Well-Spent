@@ -11,7 +11,7 @@ class Navbar extends React.Component {
 
   signOutFunc() {
     this.props.onSignOut();
-    this.props.history.push('/splash');
+    this.props.history.push('/');
   }
 
   render() {
@@ -43,7 +43,7 @@ class Navbar extends React.Component {
         <nav>
           <ul className="nav nav-pills pull-right">
             <li role="presentation">
-              <Link to="/splash">Splash</Link>
+              <Link to="/">Splash</Link>
             </li>
             {signUpButton}
             {logInButton}

@@ -5,10 +5,10 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="jumbotron">
-        <h1>Dashboard</h1>
-        <Link to="/purchases">Purchases</Link>
+      <div>
+        <h1>Purchases</h1>
+        <Link to="/purchases/new">Add a purchase</Link>
       </div>
     );
-  }
+  };
 }
