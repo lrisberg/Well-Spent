@@ -6,13 +6,13 @@ import {
 
 import ReactDOM from 'react-dom';
 import './index.css';
-import LoginPage from './components/loginPage.js';
-import SignupPage from './components/signupPage.js'
-import SplashPage from './components/splashPage.js'
-import Navbar from './components/navBar.js'
-import Dashboard from './components/dashboard.js'
-import Purchases from './components/purchases.js'
-import AddPurchaseForm from './components/addPurchaseForm.js'
+import LoginPage from './components/loginPage.jsx';
+import SignupPage from './components/signupPage.jsx'
+import SplashPage from './components/splashPage.jsx'
+import Navbar from './components/navBar.jsx'
+import Dashboard from './components/dashboard.jsx'
+import Purchases from './components/purchases.jsx'
+import AddPurchaseForm from './components/addPurchaseForm.jsx'
 
 class App extends React.Component {
   constructor() {
