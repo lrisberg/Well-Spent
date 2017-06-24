@@ -1,23 +1,70 @@
 import React from 'react';
+import axios from 'axios';
 
 
 export default class AddPurchaseForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      price: 0,
+      date: ''
+    };
+
+    this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangePrice = this.handleChangePrice.bind(this);
+    this.handleChangeDate = this.handleChangeDate.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChangeName(event) {
+    this.setState({
+      name: event.target.value
+    });
+  }
+
+  handleChangePrice(event) {
+    this.setState({
+      price: event.target.value
+    });
+  }
+
+  handleChangeDate(event) {
+    this.setState({
+      date: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+    axios.post('/api/purchases', {
+      name: this.state.name,
+      price: this.state.price,
+      date: this.state.date
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    event.preventDefault();
+  }
 
   render() {
     return (
       <div className="container">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Item Name</label>
-            <input type="text" className="form-control" placeholder="Item Name" />
+            <input type="text" value={this.state.name} onChange={this.handleChangeName} className="form-control" placeholder="Item Name" />
           </div>
           <div className="form-group">
             <label>Price</label>
-            <input type="text" className="form-control" placeholder="Price" />
+            <input value={this.state.price} onChange={this.handleChangePrice} type="number" className="form-control" placeholder="Price (e.g. '10.24')" />
           </div>
           <div className="form-group">
             <label>Date Purchased</label>
-            <input type="date" className="form-control" placeholder="Date purchased" />
+            <input type="date" value={this.state.date} onChange={this.handleChangeDate} className="form-control" placeholder="Date purchased" />
           </div>
           <button type="submit" className="btn btn-default">Add Purchase</button>
         </form>
