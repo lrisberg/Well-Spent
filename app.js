@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var users = require('./routes/users');
+var tokens = require('./routes/tokens')
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 // app.use('/', index);
 app.use('/api/users', users);
+app.use('/api/tokens', tokens);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
