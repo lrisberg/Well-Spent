@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-export default class AddHappinessForm extends React.Component {
+class AddHappinessForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -35,7 +36,7 @@ export default class AddHappinessForm extends React.Component {
       happiness: this.state.happiness
     })
     .then((response) => {
-      console.log(response);
+      this.props.history.push('/dashboard');
     })
     event.preventDefault();
   }
@@ -65,3 +66,5 @@ export default class AddHappinessForm extends React.Component {
     )
   }
 }
+
+export default withRouter(AddHappinessForm);

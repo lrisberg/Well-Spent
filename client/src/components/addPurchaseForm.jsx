@@ -43,7 +43,6 @@ class AddPurchaseForm extends React.Component {
       date: this.state.date
     })
     .then((response) => {
-      console.log(response);
       this.props.history.push('/purchases');
 
     })
