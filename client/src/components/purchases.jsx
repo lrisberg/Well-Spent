@@ -3,19 +3,33 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Purchases extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      purchases: null
+    }
+  }
 
   componentDidMount() {
     axios.get('/api/purchases')
     .then((response) => {
-      console.log(response);
+      this.setState({
+        purchases: response.data
+      });
     })
   }
 
   render() {
+    const purchases = this.state.purchases || [];
+    const rows = purchases.map((purchase) => {
+      return <div key={purchase.id}>{purchase.name}</div>;
+    });
+
     return (
       <div>
         <h1>Purchases</h1>
         <Link to="/purchases/new">Add a purchase</Link>
+        {rows}
       </div>
     );
   };
