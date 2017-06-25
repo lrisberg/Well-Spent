@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
+import axios from 'axios';
 
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -20,6 +21,7 @@ class App extends React.Component {
     this.state = {
       token: localStorage.getItem('token')
     }
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 
     this.saveToken = this.saveToken.bind(this);
     this.destroyToken = this.destroyToken.bind(this);
@@ -30,6 +32,7 @@ class App extends React.Component {
     this.setState({
       token: token
     });
+    axios.defaults.headers.common['Authorization'] = token;
   }
 
   destroyToken() {
@@ -37,6 +40,7 @@ class App extends React.Component {
     this.setState({
       token: null
     });
+    axios.defaults.headers.common['Authorization'] = null;
   }
 
   render() {

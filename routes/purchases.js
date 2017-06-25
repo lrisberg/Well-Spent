@@ -6,7 +6,7 @@ const knex = require('../knex');
 const SECRET = process.env.JWT_KEY || 'its a secret SHHHHHH!';
 
 function checkAuth(req, res, next) {
-  let token = req.body.token;
+  let token = req.headers.authorization;
   if (token) {
     jwt.verify(token, SECRET, function(err, decoded) {
       if (err) {
@@ -40,5 +40,14 @@ router.post('/', checkAuth, (req, res, next) => {
       res.send(purchases[0])
     })
 });
+
+router.get('/', checkAuth, (req, res, next) => {
+  let id = req.user.userId;
+  knex('purchases')
+    .where('user_id', id)
+    .then((purchases) => {
+      res.send(purchases);
+    })
+})
 
 module.exports = router;

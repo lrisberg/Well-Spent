@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-export default class Dashboard extends React.Component {
+export default class Purchases extends React.Component {
+
+  componentDidMount() {
+    axios.get('/api/purchases')
+    .then((response) => {
+      console.log(response);
+    })
+  }
 
   render() {
     return (
