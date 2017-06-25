@@ -22,10 +22,11 @@ export default class Purchases extends React.Component {
   render() {
     const purchases = this.state.purchases || [];
     const rows = purchases.map((purchase) => {
+      let purchasePath = `/purchases/${purchase.id}`;
       return (
         <div key={purchase.id} className="panel panel-default">
           <div className="panel-body">
-            {purchase.name}
+            <Link to={purchasePath}>{purchase.name}</Link>
           </div>
         </div>
       )
