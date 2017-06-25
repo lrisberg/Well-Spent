@@ -15,9 +15,9 @@ class AddHappinessForm extends React.Component {
   };
 
   componentDidMount() {
-    let itemId = this.props.match.params.id;
+    let purchaseId = this.props.match.params.id;
 
-    axios.get(`/api/purchases/${itemId}`)
+    axios.get(`/api/purchases/${purchaseId}`)
       .then((purchaseResponse) => {
         this.setState({
           purchase: purchaseResponse.data

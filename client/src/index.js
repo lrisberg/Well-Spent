@@ -15,6 +15,7 @@ import Dashboard from './components/dashboard.jsx';
 import Purchases from './components/purchases.jsx';
 import AddPurchaseForm from './components/addPurchaseForm.jsx';
 import AddHappinessForm from './components/addHappinessForm.jsx';
+import PurchaseDetails from './components/purchaseDetails.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -57,6 +58,7 @@ class App extends React.Component {
             <Route exact path="/purchases" component={Purchases}/>
             <Route exact path="/purchases/new" component={AddPurchaseForm}/>
             <Route exact path="/purchases/:id/happiness/new" component={AddHappinessForm}/>
+            <Route exact path="/purchases/:id" component={PurchaseDetails}/>
           </div>
         </div>
       </Router>
