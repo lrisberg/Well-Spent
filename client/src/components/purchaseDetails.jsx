@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 export default class PurchaseDetails extends React.Component {
   constructor() {
@@ -15,7 +16,6 @@ export default class PurchaseDetails extends React.Component {
 
     axios.get(`/api/purchases/${purchaseId}`)
       .then((purchaseResponse) => {
-        console.log(purchaseResponse);
         this.setState({
           purchase: purchaseResponse.data
         });
@@ -29,10 +29,11 @@ export default class PurchaseDetails extends React.Component {
     let purchaseName = this.state.purchase.name;
 
     const happinessRows = this.state.purchase.happiness.map((happiness) => {
+      let formattedDate = moment.utc(happiness.created_at).format('dddd MMMM Do');
       return (
         <tr key={happiness.id}>
           <td>
-            {happiness.created_at}
+            {formattedDate}
           </td>
           <td>
             {happiness.happiness}
