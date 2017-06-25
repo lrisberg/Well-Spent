@@ -32,11 +32,12 @@ class AddHappinessForm extends React.Component {
   }
 
   handleSubmit(event) {
-    axios.post(`/api/purchases/${this.props.match.params.id}/happiness`, {
+    const purchaseId = this.props.match.params.id;
+    axios.post(`/api/purchases/${purchaseId}/happiness`, {
       happiness: this.state.happiness
     })
     .then((response) => {
-      this.props.history.push('/dashboard');
+      this.props.history.push(`/purchases/${purchaseId}`);
     })
     event.preventDefault();
   }

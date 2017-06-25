@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 export default class PurchaseDetails extends React.Component {
   constructor() {
@@ -42,9 +43,20 @@ export default class PurchaseDetails extends React.Component {
       )
     })
 
+    let happinessAlert = null;
+    if (this.state.purchase.promptForHappiness) {
+      let addHappinessPath = `/purchases/${this.state.purchase.id}/happiness/new`;
+      happinessAlert = (
+        <div className="alert alert-info" role="alert">
+          <Link to={addHappinessPath}>Time to add happiness!</Link>
+        </div>
+      )
+    }
+
     return (
       <div>
         <h1>{purchaseName} Details</h1>
+        {happinessAlert}
           <table className="table table-striped">
             <thead>
               <tr>

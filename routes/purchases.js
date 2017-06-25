@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const knex = require('../knex');
+var moment = require('moment');
 
 const checkAuth = require('../common/auth.js').checkAuth;
 
@@ -28,6 +29,15 @@ router.get('/', checkAuth, (req, res, next) => {
     })
 })
 
+function isHappinessPromptRequired(happinesses) {
+  const interval = 24;
+  if (happinesses.length === 0) {
+    return true;
+  }
+  let difference = moment().diff(moment(happinesses[0].created_at), 'hours');
+  return difference >= interval;
+}
+
 router.get('/:id', checkAuth, (req, res, next) => {
   let userId = req.user.userId;
   knex('purchases')
@@ -36,11 +46,13 @@ router.get('/:id', checkAuth, (req, res, next) => {
     .then((purchases) => {
       knex('happiness')
         .where('purchase_id', req.params.id)
+        .orderBy('created_at', 'desc')
         .then((happiness) => {
           let purchasePlusHappiness = {
             happiness: happiness
           };
           Object.assign(purchasePlusHappiness, purchases[0]);
+          purchasePlusHappiness.promptForHappiness = isHappinessPromptRequired(happiness);
           res.send(purchasePlusHappiness);
         })
     })
