@@ -36,10 +36,12 @@ export default class AddPurchaseForm extends React.Component {
   }
 
   handleSubmit(event) {
+    let token = window.localStorage.getItem('token');
     axios.post('/api/purchases', {
       name: this.state.name,
       price: this.state.price,
-      date: this.state.date
+      date: this.state.date,
+      token: token
     })
     .then((response) => {
       console.log(response);
