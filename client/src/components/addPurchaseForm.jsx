@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 
-export default class AddPurchaseForm extends React.Component {
+class AddPurchaseForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -45,6 +46,8 @@ export default class AddPurchaseForm extends React.Component {
     })
     .then((response) => {
       console.log(response);
+      this.props.history.push('/purchases');
+
     })
     .catch((error) => {
       console.error(error);
@@ -74,3 +77,5 @@ export default class AddPurchaseForm extends React.Component {
     )
   }
 }
+
+export default withRouter(AddPurchaseForm);
