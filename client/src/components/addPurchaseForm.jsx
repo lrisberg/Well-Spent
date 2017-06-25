@@ -37,13 +37,10 @@ class AddPurchaseForm extends React.Component {
   }
 
   handleSubmit(event) {
-    let token = window.localStorage.getItem('token');
-    'Authentication: Token %s'
     axios.post('/api/purchases', {
       name: this.state.name,
       price: this.state.price,
-      date: this.state.date,
-      token: token
+      date: this.state.date
     })
     .then((response) => {
       console.log(response);

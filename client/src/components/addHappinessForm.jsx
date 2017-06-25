@@ -6,8 +6,12 @@ export default class AddHappinessForm extends React.Component {
     super();
     this.state = {
       purchase: null,
-    }
-  }
+      happiness: 0
+    };
+
+    this.handleChangeHappiness = this.handleChangeHappiness.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  };
 
   componentDidMount() {
     let itemId = this.props.match.params.id;
@@ -20,9 +24,21 @@ export default class AddHappinessForm extends React.Component {
       });
   }
 
-  // onSubmit () {
-  //   let url = `/api/{this.props.params.id}`
-  // }
+  handleChangeHappiness(event) {
+    this.setState({
+      happiness: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+    axios.post(`/api/purchases/${this.props.match.params.id}/happiness`, {
+      happiness: this.state.happiness
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    event.preventDefault();
+  }
 
   render() {
     let form;
@@ -32,10 +48,10 @@ export default class AddHappinessForm extends React.Component {
     else {
       const productName = this.state.purchase.name;
       form = (
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>How happy are you with your purchase of {productName}?</label>
-            <input type="number" min="1" max="7" className="form-control" placeholder="enter a number between 1 - 7" />
+            <input type="number" value={this.state.happiness} onChange={this.handleChangeHappiness} min="1" max="7" className="form-control" placeholder="enter a number between 1 - 7" />
           </div>
           <button type="submit" className="btn btn-default">Add Happiness</button>
         </form>
