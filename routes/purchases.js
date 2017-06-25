@@ -20,11 +20,21 @@ router.post('/', checkAuth, (req, res, next) => {
 });
 
 router.get('/', checkAuth, (req, res, next) => {
-  let id = req.user.userId;
+  let userId = req.user.userId;
   knex('purchases')
-    .where('user_id', id)
+    .where('user_id', userId)
     .then((purchases) => {
       res.send(purchases);
+    })
+})
+
+router.get('/:id', checkAuth, (req, res, next) => {
+  let userId = req.user.userId;
+  knex('purchases')
+    .where('user_id', userId)
+    .where('id', req.params.id)
+    .then((purchases) => {
+      res.send(purchases[0]);
     })
 })
 

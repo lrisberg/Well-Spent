@@ -8,12 +8,13 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import './index.css';
 import LoginPage from './components/loginPage.jsx';
-import SignupPage from './components/signupPage.jsx'
-import SplashPage from './components/splashPage.jsx'
-import Navbar from './components/navBar.jsx'
-import Dashboard from './components/dashboard.jsx'
-import Purchases from './components/purchases.jsx'
-import AddPurchaseForm from './components/addPurchaseForm.jsx'
+import SignupPage from './components/signupPage.jsx';
+import SplashPage from './components/splashPage.jsx';
+import Navbar from './components/navBar.jsx';
+import Dashboard from './components/dashboard.jsx';
+import Purchases from './components/purchases.jsx';
+import AddPurchaseForm from './components/addPurchaseForm.jsx';
+import AddHappinessForm from './components/addHappinessForm.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -55,6 +56,7 @@ class App extends React.Component {
             <Route path="/dashboard" component={Dashboard}/>
             <Route exact path="/purchases" component={Purchases}/>
             <Route exact path="/purchases/new" component={AddPurchaseForm}/>
+            <Route exact path="/purchases/:id/happiness/new" component={AddHappinessForm}/>
           </div>
         </div>
       </Router>
