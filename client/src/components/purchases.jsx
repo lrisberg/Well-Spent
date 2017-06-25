@@ -22,7 +22,13 @@ export default class Purchases extends React.Component {
   render() {
     const purchases = this.state.purchases || [];
     const rows = purchases.map((purchase) => {
-      return <div key={purchase.id}>{purchase.name}</div>;
+      return (
+        <div key={purchase.id} className="panel panel-default">
+          <div className="panel-body">
+            {purchase.name}
+          </div>
+        </div>
+      )
     });
 
     return (
