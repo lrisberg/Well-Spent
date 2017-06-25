@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const knex = require('../knex');
 var moment = require('moment');
+const responses = require('../common/responses.js');
 
 const checkAuth = require('../common/auth.js').checkAuth;
 
@@ -41,9 +42,17 @@ function isHappinessPromptRequired(happinesses) {
 router.get('/:id', checkAuth, (req, res, next) => {
   let userId = req.user.userId;
   knex('purchases')
-    .where('user_id', userId)
     .where('id', req.params.id)
     .then((purchases) => {
+      if (purchases.length === 0) {
+        responses.notFound(res);
+        return;
+      }
+      if (purchases[0].user_id !== userId) {
+        responses.unauthorized(res);
+        return;
+      }
+
       knex('happiness')
         .where('purchase_id', req.params.id)
         .orderBy('created_at', 'desc')

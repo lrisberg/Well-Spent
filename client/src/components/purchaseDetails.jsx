@@ -20,7 +20,10 @@ export default class PurchaseDetails extends React.Component {
         this.setState({
           purchase: purchaseResponse.data
         });
-      });
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   }
 
   render() {
