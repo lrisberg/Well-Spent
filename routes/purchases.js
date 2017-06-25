@@ -34,7 +34,15 @@ router.get('/:id', checkAuth, (req, res, next) => {
     .where('user_id', userId)
     .where('id', req.params.id)
     .then((purchases) => {
-      res.send(purchases[0]);
+      knex('happiness')
+        .where('purchase_id', req.params.id)
+        .then((happiness) => {
+          let purchasePlusHappiness = {
+            happiness: happiness
+          };
+          Object.assign(purchasePlusHappiness, purchases[0]);
+          res.send(purchasePlusHappiness);
+        })
     })
 })
 

@@ -5,7 +5,8 @@ export default class PurchaseDetails extends React.Component {
   constructor() {
     super();
     this.state = {
-      purchase: null
+      purchase: null,
+      happiness: null
     };
   };
 
@@ -14,6 +15,7 @@ export default class PurchaseDetails extends React.Component {
 
     axios.get(`/api/purchases/${purchaseId}`)
       .then((purchaseResponse) => {
+        console.log(purchaseResponse);
         this.setState({
           purchase: purchaseResponse.data
         });
@@ -26,9 +28,33 @@ export default class PurchaseDetails extends React.Component {
     }
     let purchaseName = this.state.purchase.name;
 
+    const happinessRows = this.state.purchase.happiness.map((happiness) => {
+      return (
+        <tr key={happiness.id}>
+          <td>
+            {happiness.created_at}
+          </td>
+          <td>
+            {happiness.happiness}
+          </td>
+        </tr>
+      )
+    })
+
     return (
       <div>
         <h1>{purchaseName} Details</h1>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Happiness</th>
+              </tr>
+            </thead>
+            <tbody>
+              {happinessRows}
+            </tbody>
+          </table>
       </div>
     )
   }
