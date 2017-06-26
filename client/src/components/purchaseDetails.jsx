@@ -2,6 +2,14 @@ import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis
+} from 'recharts';
+import { scaleTime } from 'd3-scale';
+
 
 export default class PurchaseDetails extends React.Component {
   constructor() {
@@ -56,10 +64,34 @@ export default class PurchaseDetails extends React.Component {
       )
     }
 
+    const chartData = this.state.purchase.happiness.map((happiness) => {
+        return {
+          happiness: happiness.happiness,
+          date: moment(happiness.created_at),
+          time: moment(happiness.created_at).toDate().getTime()
+        };
+    });
+    chartData.sort((h1, h2) => {
+      return h1.date.diff(h2.date);
+    });
+
+    const dateFormat = (timeValue) => {
+	    return moment(timeValue).format('MM/DD');
+    };
+    const scale = scaleTime();
+    let chart = (
+      <LineChart width={800} height={400} data={chartData}>
+        <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
+        <XAxis scale={scale} dataKey="time" tickFormatter={dateFormat}/>
+        <YAxis domain={['1', '7']} dataKey="happiness"/>
+      </LineChart>
+    )
+
     return (
       <div>
         <h1>{purchaseName} Details</h1>
         {happinessAlert}
+        {chart}
           <table className="table table-striped">
             <thead>
               <tr>
