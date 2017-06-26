@@ -9,13 +9,24 @@ class AddPurchaseForm extends React.Component {
     this.state = {
       name: '',
       price: 0,
-      date: ''
+      date: '',
+      categories: null
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangePrice = this.handleChangePrice.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/api/categories')
+      .then((response) => {
+        this.setState({
+          categories: response.data
+        })
+        console.log(this.state.categories);
+      })
   }
 
   handleChangeName(event) {
@@ -64,6 +75,19 @@ class AddPurchaseForm extends React.Component {
             <label>Price</label>
             <input value={this.state.price} onChange={this.handleChangePrice} type="number" className="form-control" placeholder="Price (e.g. '10.24')" />
           </div>
+
+          <div className="dropdown">
+            <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Choose Category
+              <span className="caret"></span>
+            </button>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li>Action</li>
+              <li>Another action</li>
+              <li>Something else here</li>
+            </ul>
+          </div>
+
           <div className="form-group">
             <label>Date Purchased</label>
             <input type="date" value={this.state.date} onChange={this.handleChangeDate} className="form-control" placeholder="Date purchased" />

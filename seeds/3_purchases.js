@@ -7,6 +7,7 @@ exports.seed = function(knex, Promise) {
           [{
             id: 1,
             user_id: 1,
+            category_id: 8,
             name: 'Swedish Fish',
             price: '3.45',
             date: new Date('2017-06-24 16:26:16 UTC'),

@@ -49,13 +49,22 @@ class AddHappinessForm extends React.Component {
     }
     else {
       const productName = this.state.purchase.name;
+      const productPrice = this.state.purchase.price;
       form = (
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label>How happy are you with your purchase of {productName}?</label>
+            <label>You spent ${productPrice} on {productName}. Please record how much you agree with this statement in regards to your purchase: 'I feel that my money was well spent.'</label>
+            <label>'I feel that my money was well spent.'</label>
             <input type="number" value={this.state.happiness} onChange={this.handleChangeHappiness} min="1" max="7" className="form-control" placeholder="enter a number between 1 - 7" />
+              <label className="radio"><input type="radio" name="optradio" value="1"/>Absolutely Disagree</label>
+              <label className="radio"><input type="radio" name="optradio" value="2"/>Strongly Disagree</label>
+              <label className="radio"><input type="radio" name="optradio" value="3"/>Somewhat Disagree</label>
+              <label className="radio"><input type="radio" name="optradio" value="4"/>Neither Agree nor Disagree</label>
+              <label className="radio"><input type="radio" name="optradio" value="5"/>Somewhat Agree</label>
+              <label className="radio"><input type="radio" name="optradio" value="6"/>Strongly Agree</label>
+              <label className="radio"><input type="radio" name="optradio" value="7"/>Absolutely Agree</label>
           </div>
-          <button type="submit" className="btn btn-default">Add Happiness</button>
+          <button type="submit" className="btn btn-default">Submit</button>
         </form>
       )
     }
