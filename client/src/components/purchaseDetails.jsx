@@ -92,18 +92,19 @@ export default class PurchaseDetails extends React.Component {
         <h1>{purchaseName} Details</h1>
         {happinessAlert}
         {chart}
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Happiness</th>
-              </tr>
-            </thead>
-            <tbody>
-              {happinessRows}
-            </tbody>
-          </table>
       </div>
     )
   }
 }
+
+// <table className="table table-striped">
+//   <thead>
+//     <tr>
+//       <th>Date</th>
+//       <th>Happiness</th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     {happinessRows}
+//   </tbody>
+// </table>

@@ -18,6 +18,8 @@ class Navbar extends React.Component {
     let signUpButton = null;
     let logInButton = null;
     let signOutButton = null;
+    let purchasesButton = null;
+    let dashboardButton = null;
     if (!this.props.loggedIn) {
       signUpButton = (
         <li role="presentation">
@@ -36,15 +38,24 @@ class Navbar extends React.Component {
           <a href="#" onClick={this.signOutFunc}>Sign Out</a>
         </li>
       )
+      purchasesButton = (
+        <li role="presentation">
+          <Link to="/purchases">Purchases</Link>
+        </li>
+      )
+      dashboardButton = (
+        <li role="presentation">
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )
     }
 
     return (
       <div className="header clearfix">
         <nav>
           <ul className="nav nav-pills pull-right">
-            <li role="presentation">
-              <Link to="/">Splash</Link>
-            </li>
+            {dashboardButton}
+            {purchasesButton}
             {signUpButton}
             {logInButton}
             {signOutButton}
