@@ -9,12 +9,13 @@ const checkAuth = require('../common/auth.js').checkAuth;
 router.post('/', checkAuth, (req, res, next) => {
   let body = req.body;
   knex('purchases')
-    .returning(['id', 'user_id', 'name', 'price', 'date'])
+    .returning(['id', 'user_id', 'category_id', 'name', 'price', 'date'])
     .insert({
       user_id: req.user.userId,
       name: req.body.name,
       price: req.body.price,
-      date: req.body.date
+      date: req.body.date,
+      category_id: req.body.category_id
     })
     .then((purchases) => {
       res.send(purchases[0])
@@ -23,8 +24,11 @@ router.post('/', checkAuth, (req, res, next) => {
 
 router.get('/', checkAuth, (req, res, next) => {
   let userId = req.user.userId;
-  knex('purchases')
-    .where('user_id', userId)
+  knex
+    .select('purchases.*', 'categories.name AS category_name')
+    .from('purchases')
+    .join('categories', 'purchases.category_id', 'categories.id')
+    .where('purchases.user_id', userId)
     .then((purchases) => {
       res.send(purchases);
     })

@@ -27,6 +27,7 @@ export default class Purchases extends React.Component {
         <div key={purchase.id} className="panel panel-default">
           <div className="panel-body">
             <Link to={purchasePath}>{purchase.name}</Link>
+            <p>{purchase.category_name}</p>
           </div>
         </div>
       )

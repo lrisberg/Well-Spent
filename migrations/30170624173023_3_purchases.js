@@ -10,13 +10,13 @@ exports.up = function(knex) {
       .inTable('users')
       .onDelete('CASCADE')
       .index();
-      table
-        .integer('category_id')
-        .notNullable()
-        .references('id')
-        .inTable('categories')
-        .onDelete('CASCADE')
-        .index();
+    table
+      .integer('category_id')
+      .notNullable()
+      .references('id')
+      .inTable('categories')
+      .onDelete('CASCADE')
+      .index();
     table.string('name').notNullable();
     table.decimal('price').notNullable();
     table.date('date').notNullable();

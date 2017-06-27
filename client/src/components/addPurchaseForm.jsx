@@ -10,13 +10,15 @@ class AddPurchaseForm extends React.Component {
       name: '',
       price: 0,
       date: '',
-      categories: null
+      categories: null,
+      category: null
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangePrice = this.handleChangePrice.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.selectCategory = this.selectCategory.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +27,6 @@ class AddPurchaseForm extends React.Component {
         this.setState({
           categories: response.data
         })
-        console.log(this.state.categories);
       })
   }
 
@@ -47,11 +48,18 @@ class AddPurchaseForm extends React.Component {
     });
   }
 
+  selectCategory(category) {
+    this.setState({
+      category: category
+    })
+  }
+
   handleSubmit(event) {
     axios.post('/api/purchases', {
       name: this.state.name,
       price: this.state.price,
-      date: this.state.date
+      date: this.state.date,
+      category_id: this.state.category.id
     })
     .then((response) => {
       this.props.history.push('/purchases');
@@ -64,6 +72,21 @@ class AddPurchaseForm extends React.Component {
   }
 
   render() {
+    const categories = this.state.categories || [];
+    const categoryRows = categories.map((category) => {
+      const clickHandler = (event) => {
+        this.selectCategory(category);
+      };
+
+      return (
+        <li key={category.id}>
+          <a href="#" onClick={clickHandler}>{category.name}</a>
+        </li>
+      )
+    });
+
+    const selectedCategory = this.state.category === null ? 'Choose Category' : this.state.category.name;
+
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
@@ -78,13 +101,11 @@ class AddPurchaseForm extends React.Component {
 
           <div className="dropdown">
             <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Choose Category
+              {selectedCategory}
               <span className="caret"></span>
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li>Action</li>
-              <li>Another action</li>
-              <li>Something else here</li>
+              {categoryRows}
             </ul>
           </div>
 

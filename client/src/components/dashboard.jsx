@@ -7,6 +7,9 @@ export default class Dashboard extends React.Component {
     return (
       <div>
         <h1>Dashboard</h1>
+        <div className="alert alert-info" role="alert">
+          <Link to=''>You have (number) purchases ready for your input.</Link>
+        </div>
         <h4>Most Well-Spent Categories</h4>
         <h4>Most Well-Spent Dollars</h4>
         <h4>Percent of Money Spent on Meaningful Purchases</h4>

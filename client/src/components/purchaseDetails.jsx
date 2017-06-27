@@ -83,7 +83,7 @@ export default class PurchaseDetails extends React.Component {
       <LineChart width={800} height={400} data={chartData}>
         <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
         <XAxis scale={scale} dataKey="time" tickFormatter={dateFormat}/>
-        <YAxis domain={['1', '7']} dataKey="happiness"/>
+        <YAxis domain={[0.5, 7.5]} dataKey="happiness"/>
       </LineChart>
     )
 
