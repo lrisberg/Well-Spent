@@ -33,6 +33,16 @@ exports.seed = function(knex, Promise) {
             date: new Date('2017-06-24 16:26:16 UTC'),
             created_at: new Date('2017-06-24 14:26:16 UTC'),
             updated_at: new Date('2017-06-24 14:26:16 UTC')
+          },
+          {
+            id: 4,
+            user_id: 1,
+            category_id: 8,
+            name: 'Groceries',
+            price: '48.34',
+            date: new Date('2017-06-24 16:26:16 UTC'),
+            created_at: new Date('2017-06-23 14:26:16 UTC'),
+            updated_at: new Date('2017-06-23 14:26:16 UTC')
           }])
       ]);
     })

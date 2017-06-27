@@ -297,7 +297,28 @@ exports.seed = function(knex, Promise) {
             happiness: 7,
             created_at: new Date('2017-06-28 15:26:16 UTC'),
             updated_at: new Date('2017-06-28 15:26:16 UTC')
-          }])
+          },
+          {
+            id: 43,
+            purchase_id: 4,
+            happiness: 6,
+            created_at: new Date('2017-06-23 15:26:16 UTC'),
+            updated_at: new Date('2017-06-23 15:26:16 UTC')
+          },
+          {
+            id: 44,
+            purchase_id: 4,
+            happiness: 6,
+            created_at: new Date('2017-06-24 15:26:16 UTC'),
+            updated_at: new Date('2017-06-24 15:26:16 UTC')
+          },
+          {
+            id: 45,
+            purchase_id: 4,
+            happiness: 5,
+            created_at: new Date('2017-06-25 15:26:16 UTC'),
+            updated_at: new Date('2017-06-25 15:26:16 UTC')
+          },])
       ]);
     })
     .then(() => {
