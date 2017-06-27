@@ -56,9 +56,9 @@ class App extends React.Component {
             <Route path="/login" render={(props) => <LoginPage onLogin={this.saveToken} />}/>
             <Route path="/dashboard" component={Dashboard}/>
             <Route exact path="/purchases" component={Purchases}/>
+            <Route exact path="/purchases/:id" component={PurchaseDetails}/>
             <Route exact path="/purchases/new" component={AddPurchaseForm}/>
             <Route exact path="/purchases/:id/happiness/new" component={AddHappinessForm}/>
-            <Route exact path="/purchases/:id" component={PurchaseDetails}/>
           </div>
         </div>
       </Router>

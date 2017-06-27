@@ -10,6 +10,7 @@ var tokens = require('./routes/tokens');
 var purchases = require('./routes/purchases');
 var happiness = require('./routes/happiness');
 var categories = require('./routes/categories');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 
@@ -33,7 +34,8 @@ app.use('/api/users', users);
 app.use('/api/tokens', tokens);
 app.use('/api/purchases', purchases);
 app.use('/api/purchases', happiness);
-app.use('/api/categories', categories)
+app.use('/api/categories', categories);
+app.use('/api/dashboard', dashboard);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

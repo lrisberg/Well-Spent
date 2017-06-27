@@ -96,15 +96,3 @@ export default class PurchaseDetails extends React.Component {
     )
   }
 }
-
-// <table className="table table-striped">
-//   <thead>
-//     <tr>
-//       <th>Date</th>
-//       <th>Happiness</th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     {happinessRows}
-//   </tbody>
-// </table>
