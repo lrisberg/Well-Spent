@@ -23,11 +23,13 @@ export default class Dashboard extends React.Component {
 
     let happinessAlert = null;
     if (this.state.dashboard) {
-      happinessAlert = (
-        <div className="alert alert-info" role="alert">
-          <Link to='/purchases'>You have {this.state.dashboard.numberOfNeedyPurchases} purchases ready for your input.</Link>
-        </div>
-      )
+      if (this.state.dashboard.numberOfNeedyPurchases > 0) {
+        happinessAlert = (
+          <div className="alert alert-info" role="alert">
+            <Link to='/purchases'>You have {this.state.dashboard.numberOfNeedyPurchases} purchases ready for your input.</Link>
+          </div>
+        )
+      }
     }
 
     return (
