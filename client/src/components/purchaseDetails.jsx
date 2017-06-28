@@ -61,7 +61,7 @@ export default class PurchaseDetails extends React.Component {
       let addHappinessPath = `/purchases/${this.state.purchase.id}/happiness/new`;
       happinessAlert = (
         <div className="alert alert-info" role="alert">
-          <Link to={addHappinessPath}>Time to add happiness!</Link>
+          <Link to={addHappinessPath}>This purchase is ready for your input.</Link>
         </div>
       )
     }
