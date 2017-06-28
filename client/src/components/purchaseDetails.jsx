@@ -22,7 +22,9 @@ export default class PurchaseDetails extends React.Component {
 
   componentDidMount() {
     let purchaseId = this.props.match.params.id;
-
+    if (isNaN(parseInt(purchaseId))) {
+      return;
+    }
     axios.get(`/api/purchases/${purchaseId}`)
       .then((purchaseResponse) => {
         this.setState({

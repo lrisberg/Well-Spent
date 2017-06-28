@@ -4,9 +4,13 @@ const knex = require('../knex');
 var moment = require('moment');
 const responses = require('../common/responses.js');
 
+//validations
+const ev = require('express-validation');
+const validations = require('../validations/purchases');
+
 const checkAuth = require('../common/auth.js').checkAuth;
 
-router.post('/', checkAuth, (req, res, next) => {
+router.post('/', ev(validations.post), checkAuth, (req, res, next) => {
   let body = req.body;
   knex('purchases')
     .returning(['id', 'user_id', 'category_id', 'name', 'price', 'date'])

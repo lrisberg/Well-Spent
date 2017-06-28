@@ -71,12 +71,31 @@ class AddPurchaseForm extends React.Component {
     event.preventDefault();
   }
 
+  isFormValid() {
+    if (this.state.name === null || this.state.name === '') {
+      return false;
+    }
+    else if (this.state.price <= 0) {
+      return false;
+    }
+    else if (this.state.date === null || this.state.date === '') {
+      return false;
+    }
+    else if (this.state.category === null) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
   render() {
     const categories = this.state.categories || [];
     const categoryRows = categories.map((category) => {
       const clickHandler = (event) => {
         this.selectCategory(category);
       };
+
 
       return (
         <li key={category.id}>
@@ -86,6 +105,8 @@ class AddPurchaseForm extends React.Component {
     });
 
     const selectedCategory = this.state.category === null ? 'Choose Category' : this.state.category.name;
+
+    const isValid = this.isFormValid();
 
     return (
       <div className="container">
@@ -113,7 +134,7 @@ class AddPurchaseForm extends React.Component {
             <label>Date Purchased</label>
             <input type="date" value={this.state.date} onChange={this.handleChangeDate} className="form-control" placeholder="Date purchased" />
           </div>
-          <button type="submit" className="btn btn-default">Add Purchase</button>
+          <button disabled={!isValid} type="submit" className="btn btn-default">Add Purchase</button>
         </form>
       </div>
     )
