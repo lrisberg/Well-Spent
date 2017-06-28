@@ -1,2 +1,18 @@
 body {
+  background-color: #D2EBFD;
+}
+
+.jumbotron {
+  background: linear-gradient(to bottom, #41A5EA 0%, #2974B3 100%);
+  color: #EDF2F7;
+}
+
+.btn {
+  background-color: #EDF2F7;
+  color: #2974B3;
+  border-color: #2974B3;
+}
+
+.text-muted {
+  color: #2974B3;
 }
