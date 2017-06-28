@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
+//validations
+const ev = require('express-validation');
+const validations = require('../validations/users');
+
 const bcrypt = require('bcrypt-as-promised');
 const knex = require('../knex');
 
-router.post('/', function(req, res, next) {
+router.post('/', ev(validations.post), function(req, res, next) {
   bcrypt.hash(req.body.password, 12)
     .then((hashed_password) => {
       return knex('users')
