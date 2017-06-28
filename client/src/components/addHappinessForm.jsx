@@ -7,7 +7,7 @@ class AddHappinessForm extends React.Component {
     super();
     this.state = {
       purchase: null,
-      happiness: 0
+      happiness: null
     };
 
     this.handleChangeHappiness = this.handleChangeHappiness.bind(this);
@@ -42,6 +42,15 @@ class AddHappinessForm extends React.Component {
     event.preventDefault();
   }
 
+  isFormValid() {
+    if (this.state.happiness === null) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
   render() {
     let form;
     if (this.state.purchase === null) {
@@ -50,6 +59,7 @@ class AddHappinessForm extends React.Component {
     else {
       const productName = this.state.purchase.name;
       const productPrice = this.state.purchase.price;
+      const isValid = this.isFormValid();
       form = (
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -62,7 +72,7 @@ class AddHappinessForm extends React.Component {
             <label className="radio"><input type="radio" name="optradio" value="6" onChange={this.handleChangeHappiness} checked={this.state.happiness === '6'}/>Strongly Agree</label>
             <label className="radio"><input type="radio" name="optradio" value="7" onChange={this.handleChangeHappiness} checked={this.state.happiness === '7'}/>Absolutely Agree</label>
           </div>
-          <button type="submit" className="btn btn-default">Submit</button>
+          <button disabled={!isValid} type="submit" className="btn btn-default">Submit</button>
         </form>
       )
     }

@@ -2,10 +2,14 @@ var express = require('express');
 var router = express.Router();
 const knex = require('../knex');
 
+//validations
+const ev = require('express-validation');
+const validations = require('../validations/happinesses');
+
 const checkAuth = require('../common/auth.js').checkAuth;
 const responses = require('../common/responses.js');
 
-router.post('/:purchaseId/happiness/', checkAuth, (req, res, next) => {
+router.post('/:purchaseId/happiness/', ev(validations.post), checkAuth, (req, res, next) => {
   let userId = req.user.userId;
   knex ('purchases')
     .where('id', req.params.purchaseId)
