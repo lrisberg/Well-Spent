@@ -13,6 +13,7 @@ router.get('/', checkAuth, (req, res, next) => {
     .then((purchases) => {
       let needyPurchases = [];
       let averageHappinessOverTime = [];
+      let averageHappinessByCategory = [];
 
       const needyPromises = purchases.map((purchase) => {
         return knex('happiness')
@@ -37,13 +38,36 @@ router.get('/', checkAuth, (req, res, next) => {
           })
       })
 
+      const averageHappinessByCategoryPromises = purchases.map((purchase) => {
+        return knex('happiness')
+          .where('purchase_id', purchase.id)
+          .then((happinesses) => {
+            let purchasePlusHappiness = {
+              happiness: happinesses
+            };
+            Object.assign(purchasePlusHappiness, purchase);
+            return knex('categories')
+              .where('id', purchase.category_id)
+              .then((categories) => {
+                let purchasePlusHappinessPlusCategory = {
+                  category: categories[0].name
+                }
+                Object.assign(purchasePlusHappinessPlusCategory, purchasePlusHappiness)
+                averageHappinessByCategory.push(purchasePlusHappinessPlusCategory);
+              })
+          })
+      })
+
 
 
       Promise.all(needyPromises).then(() => {
         Promise.all(averageHappinessPromises).then(() => {
-          res.send({
-            numberOfNeedyPurchases: needyPurchases.length,
-            averageHappinessOverTime: averageHappinessOverTime
+          Promise.all(averageHappinessByCategoryPromises).then(() => {
+            res.send({
+              numberOfNeedyPurchases: needyPurchases.length,
+              averageHappinessOverTime: averageHappinessOverTime,
+              averageHappinessByCategory: averageHappinessByCategory
+            })
           })
         })
       })
