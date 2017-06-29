@@ -12,8 +12,9 @@ router.get('/', checkAuth, (req, res, next) => {
     .where('user_id', req.user.userId)
     .then((purchases) => {
       let needyPurchases = [];
+      let averageHappinessOverTime = [];
 
-      const promises = purchases.map((purchase) => {
+      const needyPromises = purchases.map((purchase) => {
         return knex('happiness')
           .where('purchase_id', purchase.id)
           .orderBy('created_at', 'desc')
@@ -24,13 +25,32 @@ router.get('/', checkAuth, (req, res, next) => {
           });
       });
 
-      Promise.all(promises).then(() => {
-        res.send({
-          numberOfNeedyPurchases: needyPurchases.length
+      const averageHappinessPromises = purchases.map((purchase) => {
+        return knex('happiness')
+          .where('purchase_id', purchase.id)
+          .then((happinesses) => {
+            let purchasePlusHappiness = {
+              happiness: happinesses
+            };
+            Object.assign(purchasePlusHappiness, purchase);
+            averageHappinessOverTime.push(purchasePlusHappiness);
+          })
+      })
+
+
+
+      Promise.all(needyPromises).then(() => {
+        Promise.all(averageHappinessPromises).then(() => {
+          res.send({
+            numberOfNeedyPurchases: needyPurchases.length,
+            averageHappinessOverTime: averageHappinessOverTime
+          })
         })
       })
     })
 })
+
+
 
 function isHappinessPromptRequired(happinesses) {
   const interval = 24;

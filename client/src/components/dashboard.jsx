@@ -12,10 +12,11 @@ export default class Dashboard extends React.Component {
 
   componentDidMount() {
     axios.get('/api/dashboard')
-    .then((response) => {
-      this.setState({
-        dashboard: response.data
-      })
+      .then((response) => {
+        this.setState({
+          dashboard: response.data
+        })
+        console.log(this.state.dashboard);
     })
   }
 
@@ -37,7 +38,6 @@ export default class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         {happinessAlert}
         <h4>Most Well-Spent Categories</h4>
-        <h4>Most Well-Spent Dollars</h4>
         <h4>Percent of Money Spent on Meaningful Purchases</h4>
       </div>
     );
