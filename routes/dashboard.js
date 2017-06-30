@@ -25,12 +25,22 @@ router.get('/', checkAuth, (req, res, next) => {
           });
       });
 
-      let avgPromise = knex.raw("select purchases.name, AVG(happiness) AS happiness from purchases LEFT JOIN happiness ON happiness.purchase_id = purchases.id where user_id=1 GROUP BY purchases.id;").then((response) => {
+      let avgPromise = knex.raw("select purchases.name, AVG(happiness) AS happiness from purchases LEFT JOIN happiness ON happiness.purchase_id = purchases.id where user_id=1 GROUP BY purchases.id ORDER BY happiness ASC;").then((response) => {
         averageHappinessPerPurchase = response.rows.map((row) => {
           return {
             name: row.name,
             happiness: parseFloat(row.happiness)
+          };
+        });
+
+        averageHappinessPerPurchase.sort((a, b) => {
+          if (a.happiness === null) {
+            return 1;
           }
+          if (b.happiness === null) {
+            return -1;
+          }
+          return b.happiness - a.happiness;
         })
       })
       knexPromises.push(avgPromise);

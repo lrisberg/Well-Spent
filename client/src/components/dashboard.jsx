@@ -43,7 +43,8 @@ export default class Dashboard extends React.Component {
     let happinessPerPurchaseChart = null;
     if (this.state.dashboard) {
       let happinessPerPurchaseData = this.state.dashboard.avgHappinessPerPurchase.filter((data) => data.happiness !== null);
-      happinessPerPurchaseChart = <BarChart width={600} height={300} data={happinessPerPurchaseData}>
+      let top5Data = happinessPerPurchaseData.slice(0, 5);
+      happinessPerPurchaseChart = <BarChart width={600} height={300} data={top5Data}>
         <XAxis dataKey="name" />
         <YAxis />
         <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8"/>
@@ -55,7 +56,7 @@ export default class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         {happinessAlert}
         <h4>Average Happiness Over Time</h4>
-        <h4>Happiness Per Purchase</h4>
+        <h4>Top Five Purchases</h4>
         {happinessPerPurchaseChart}
       </div>
     );
