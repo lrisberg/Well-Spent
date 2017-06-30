@@ -12,10 +12,9 @@ router.get('/', checkAuth, (req, res, next) => {
     .where('user_id', req.user.userId)
     .then((purchases) => {
       let needyPurchases = [];
-      let averageHappinessOverTime = [];
-      let averageHappinessByCategory = [];
+      let averageHappinessPerPurchase;
 
-      const needyPromises = purchases.map((purchase) => {
+      const knexPromises = purchases.map((purchase) => {
         return knex('happiness')
           .where('purchase_id', purchase.id)
           .orderBy('created_at', 'desc')
@@ -26,50 +25,21 @@ router.get('/', checkAuth, (req, res, next) => {
           });
       });
 
-      const averageHappinessPromises = purchases.map((purchase) => {
-        return knex('happiness')
-          .where('purchase_id', purchase.id)
-          .then((happinesses) => {
-            let purchasePlusHappiness = {
-              happiness: happinesses
-            };
-            Object.assign(purchasePlusHappiness, purchase);
-            averageHappinessOverTime.push(purchasePlusHappiness);
-          })
-      })
-
-      const averageHappinessByCategoryPromises = purchases.map((purchase) => {
-        return knex('happiness')
-          .where('purchase_id', purchase.id)
-          .then((happinesses) => {
-            let purchasePlusHappiness = {
-              happiness: happinesses
-            };
-            Object.assign(purchasePlusHappiness, purchase);
-            return knex('categories')
-              .where('id', purchase.category_id)
-              .then((categories) => {
-                let purchasePlusHappinessPlusCategory = {
-                  category: categories[0].name
-                }
-                Object.assign(purchasePlusHappinessPlusCategory, purchasePlusHappiness)
-                averageHappinessByCategory.push(purchasePlusHappinessPlusCategory);
-              })
-          })
-      })
-
-
-
-      Promise.all(needyPromises).then(() => {
-        Promise.all(averageHappinessPromises).then(() => {
-          Promise.all(averageHappinessByCategoryPromises).then(() => {
-            res.send({
-              numberOfNeedyPurchases: needyPurchases.length,
-              averageHappinessOverTime: averageHappinessOverTime,
-              averageHappinessByCategory: averageHappinessByCategory
-            })
-          })
+      let avgPromise = knex.raw("select purchases.name, AVG(happiness) AS happiness from purchases LEFT JOIN happiness ON happiness.purchase_id = purchases.id where user_id=1 GROUP BY purchases.id;").then((response) => {
+        averageHappinessPerPurchase = response.rows.map((row) => {
+          return {
+            name: row.name,
+            happiness: parseFloat(row.happiness)
+          }
         })
+      })
+      knexPromises.push(avgPromise);
+
+      Promise.all(knexPromises).then(() => {
+        res.send({
+          numberOfNeedyPurchases: needyPurchases.length,
+          avgHappinesPerPurchase: averageHappinessPerPurchase
+        });
       })
     })
 })

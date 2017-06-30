@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis
+} from 'recharts';
+
 export default class Dashboard extends React.Component {
   constructor() {
     super();
@@ -33,12 +40,21 @@ export default class Dashboard extends React.Component {
       }
     }
 
+    // const averageHappinessOverTimeData = this.state.dashboard.averageHappinessOverTime
+
+    // let averageHappinessOverTimeChart = (
+    //   <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
+    //     <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
+    //     <XAxis dataKey="time" />
+    //     <YAxis domain={[0.5, 7.5]} dataKey="happiness" />
+    //   </LineChart>
+    // )
+
     return (
       <div>
         <h1>Dashboard</h1>
         {happinessAlert}
-        <h4>Most Well-Spent Categories</h4>
-        <h4>Percent of Money Spent on Meaningful Purchases</h4>
+        <h4>Average Happiness Over Time</h4>
       </div>
     );
   }
