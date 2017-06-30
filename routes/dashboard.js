@@ -38,7 +38,7 @@ router.get('/', checkAuth, (req, res, next) => {
       Promise.all(knexPromises).then(() => {
         res.send({
           numberOfNeedyPurchases: needyPurchases.length,
-          avgHappinesPerPurchase: averageHappinessPerPurchase
+          avgHappinessPerPurchase: averageHappinessPerPurchase
         });
       })
     })
