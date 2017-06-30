@@ -40,14 +40,23 @@ export default class Dashboard extends React.Component {
       }
     }
 
-    let happinessPerPurchaseChart = null;
+    let top5Chart = null;
+    let worst5Chart = null;
     if (this.state.dashboard) {
       let happinessPerPurchaseData = this.state.dashboard.avgHappinessPerPurchase.filter((data) => data.happiness !== null);
       let top5Data = happinessPerPurchaseData.slice(0, 5);
-      happinessPerPurchaseChart = <BarChart width={600} height={300} data={top5Data}>
+      let worst5Data = happinessPerPurchaseData.slice((happinessPerPurchaseData.length - 5), happinessPerPurchaseData.length)
+      worst5Data.reverse();
+      top5Chart = <BarChart width={600} height={300} data={top5Data}>
         <XAxis dataKey="name" />
         <YAxis />
         <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8"/>
+      </BarChart>
+
+      worst5Chart = <BarChart width={600} height={300} data={worst5Data}>
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
       </BarChart>
     }
 
@@ -56,8 +65,10 @@ export default class Dashboard extends React.Component {
         <h1>Dashboard</h1>
         {happinessAlert}
         <h4>Average Happiness Over Time</h4>
-        <h4>Top Five Purchases</h4>
-        {happinessPerPurchaseChart}
+        <h4>Your Top Five Purchases</h4>
+        {top5Chart}
+        <h4>Your Worst Five Purchases</h4>
+        {worst5Chart}
       </div>
     );
   }
