@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
+const queryString = require('query-string');
 
 class AddPurchaseForm extends React.Component {
   constructor() {
@@ -22,6 +23,12 @@ class AddPurchaseForm extends React.Component {
   }
 
   componentDidMount() {
+    let parsed = queryString.parse(this.props.location.search);
+    this.setState({
+      name: parsed.name || '',
+      price: parsed.price || 0,
+      date: parsed.date || ''
+    });
     axios.get('/api/categories')
       .then((response) => {
         this.setState({
