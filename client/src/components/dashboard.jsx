@@ -16,7 +16,8 @@ import { scaleTime } from 'd3-scale';
 import {
   happinessTicks,
   happinessFormatter,
-  makeDailyTimelineTicks
+  makeDailyTimelineTicks,
+  dayMonthFormatter
 } from '../charting';
 
 export default class Dashboard extends React.Component {
@@ -80,10 +81,6 @@ export default class Dashboard extends React.Component {
         };
       });
 
-      const tickFormatDate = (timeValue) => {
-        console.log(timeValue);
-        return moment(timeValue).format('MM/DD');
-      };
       const scale = scaleTime();
 
       let ticks = makeDailyTimelineTicks(averageHappinessOverTimeData[0].time, averageHappinessOverTimeData[averageHappinessOverTimeData.length - 1].time);
@@ -91,11 +88,28 @@ export default class Dashboard extends React.Component {
       averageHappinessOverTimeChart = (
         <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
           <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
-          <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={tickFormatDate} />
+          <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={dayMonthFormatter} />
           <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
         </LineChart>
       )
     }
+
+    let averageHappinessByCategoryChart = null;
+    if (this.state.dashboard) {
+      let averageHappinessByCategoryData = this.state.dashboard.avgHappinessByCategory.map((happiness) => {
+        return {
+          category: happiness.category,
+          happiness: happiness.happiness
+        }
+      })
+      averageHappinessByCategoryChart = <BarChart width={600} height={300} data={averageHappinessByCategoryData}>
+        <XAxis dataKey="category" />
+        <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
+        <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
+      </BarChart>
+    }
+
+
 
     return (
       <div>
@@ -107,6 +121,8 @@ export default class Dashboard extends React.Component {
         {top5Chart}
         <h4>Your Worst Five Purchases</h4>
         {worst5Chart}
+        <h4>Average Happiness By Category</h4>
+        {averageHappinessByCategoryChart}
       </div>
     );
   }

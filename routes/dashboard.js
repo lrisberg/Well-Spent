@@ -55,11 +55,22 @@ router.get('/', checkAuth, (req, res, next) => {
       })
       knexPromises.push(avgHappinessOverTimePromise);
 
+      let avgHappinessByCategoryPromise = knex.raw("SELECT categories.name, AVG(pa.happiness) as happiness FROM (select purchases.category_id, AVG(happiness) as happiness from happiness INNER JOIN purchases ON (purchases.id = happiness.purchase_id) where user_id = ? group by purchases.id) AS pa INNER JOIN categories ON (pa.category_id = categories.id) GROUP BY categories.id ORDER BY happiness DESC", req.user.userId).then((response) => {
+        averageHappinessByCategory = response.rows.map((row) => {
+          return {
+            category: row.name,
+            happiness: parseFloat(row.happiness)
+          };
+        });
+      })
+      knexPromises.push(avgHappinessByCategoryPromise)
+
       Promise.all(knexPromises).then(() => {
         res.send({
           numberOfNeedyPurchases: needyPurchases.length,
           avgHappinessPerPurchase: averageHappinessPerPurchase,
-          avgHappinessOverTime: averageHappinessOverTime
+          avgHappinessOverTime: averageHappinessOverTime,
+          avgHappinessByCategory: averageHappinessByCategory
         });
       })
     })
