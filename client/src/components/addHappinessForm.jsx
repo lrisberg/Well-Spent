@@ -64,13 +64,18 @@ class AddHappinessForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>You spent ${productPrice} on {productName}. Please record how much you agree with this statement in regards to your purchase: 'I feel that my money was well spent.'</label>
-            <label className="radio"><input type="radio" name="optradio" value="1" onChange={this.handleChangeHappiness} checked={this.state.happiness === '1'} />Absolutely Disagree</label>
-            <label className="radio"><input type="radio" name="optradio" value="2" onChange={this.handleChangeHappiness} checked={this.state.happiness === '2'} />Strongly Disagree</label>
-            <label className="radio"><input type="radio" name="optradio" value="3" onChange={this.handleChangeHappiness} checked={this.state.happiness === '3'}/>Somewhat Disagree</label>
-            <label className="radio"><input type="radio" name="optradio" value="4" onChange={this.handleChangeHappiness} checked={this.state.happiness === '4'}/>Neither Agree nor Disagree</label>
-            <label className="radio"><input type="radio" name="optradio" value="5" onChange={this.handleChangeHappiness} checked={this.state.happiness === '5'}/>Somewhat Agree</label>
-            <label className="radio"><input type="radio" name="optradio" value="6" onChange={this.handleChangeHappiness} checked={this.state.happiness === '6'}/>Strongly Agree</label>
+
+
+
+
             <label className="radio"><input type="radio" name="optradio" value="7" onChange={this.handleChangeHappiness} checked={this.state.happiness === '7'}/>Absolutely Agree</label>
+            <label className="radio"><input type="radio" name="optradio" value="6" onChange={this.handleChangeHappiness} checked={this.state.happiness === '6'}/>Strongly Agree</label>
+            <label className="radio"><input type="radio" name="optradio" value="5" onChange={this.handleChangeHappiness} checked={this.state.happiness === '5'}/>Somewhat Agree</label>
+            <label className="radio"><input type="radio" name="optradio" value="4" onChange={this.handleChangeHappiness} checked={this.state.happiness === '4'}/>Neither Agree nor Disagree</label>
+            <label className="radio"><input type="radio" name="optradio" value="3" onChange={this.handleChangeHappiness} checked={this.state.happiness === '3'}/>Somewhat Disagree</label>
+            <label className="radio"><input type="radio" name="optradio" value="2" onChange={this.handleChangeHappiness} checked={this.state.happiness === '2'} />Strongly Disagree</label>
+            <label className="radio"><input type="radio" name="optradio" value="1" onChange={this.handleChangeHappiness} checked={this.state.happiness === '1'} />Absolutely Disagree</label>
+
           </div>
           <button disabled={!isValid} type="submit" className="btn btn-default">Submit</button>
         </form>
