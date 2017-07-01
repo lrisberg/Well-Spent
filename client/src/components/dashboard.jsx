@@ -44,6 +44,20 @@ export default class Dashboard extends React.Component {
       }
     }
 
+    let yAxisTicks = [1, 4, 7];
+    let yAxisFormatter = (happiness) => {
+      if (happiness === 1) {
+        return "☹️";
+      }
+      else if (happiness === 4) {
+        return "😐"
+      }
+      else if (happiness === 7) {
+        return "🙂"
+      }
+      return happiness;
+    };
+
     let top5Chart = null;
     let worst5Chart = null;
     if (this.state.dashboard) {
@@ -53,13 +67,13 @@ export default class Dashboard extends React.Component {
       worst5Data.reverse();
       top5Chart = <BarChart width={600} height={300} data={top5Data}>
         <XAxis dataKey="name" />
-        <YAxis />
+        <YAxis dataKey="happiness" ticks={yAxisTicks} tickFormatter={yAxisFormatter} />
         <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8"/>
       </BarChart>
 
       worst5Chart = <BarChart width={600} height={300} data={worst5Data}>
         <XAxis dataKey="name" />
-        <YAxis />
+        <YAxis dataKey="happiness" ticks={yAxisTicks} tickFormatter={yAxisFormatter} />
         <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
       </BarChart>
     }
@@ -93,10 +107,25 @@ export default class Dashboard extends React.Component {
 
       let ticks = tickMaker(averageHappinessOverTimeData[0].time, averageHappinessOverTimeData[averageHappinessOverTimeData.length - 1].time);
 
+      let yAxisTicks = [1, 4, 7];
+      let yAxisFormatter = (happiness) => {
+        if (happiness === 1) {
+          return "☹️";
+        }
+        else if (happiness === 4) {
+          return "😐"
+        }
+        else if (happiness === 7) {
+          return "🙂"
+        }
+        return happiness;
+      };
+
       averageHappinessOverTimeChart = (
         <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
           <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
           <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={tickFormatDate} />
+          <YAxis dataKey="happiness" ticks={yAxisTicks} tickFormatter={yAxisFormatter} />
         </LineChart>
       )
     }
