@@ -10,6 +10,13 @@ import {
 } from 'recharts';
 import { scaleTime } from 'd3-scale';
 
+import {
+  happinessTicks,
+  happinessFormatter,
+  makeDailyTimelineTicks,
+  dayMonthFormatter
+} from '../charting';
+
 
 export default class PurchaseDetails extends React.Component {
   constructor() {
@@ -65,15 +72,15 @@ export default class PurchaseDetails extends React.Component {
       return h1.date.diff(h2.date);
     });
 
-    const dateFormat = (timeValue) => {
-	    return moment(timeValue).format('MM/DD');
-    };
     const scale = scaleTime();
+
+    let ticks = makeDailyTimelineTicks(chartData[0].time, chartData[chartData.length - 1].time)
+
     let chart = (
       <LineChart width={800} height={400} data={chartData}>
         <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
-        <XAxis scale={scale} dataKey="time" tickFormatter={dateFormat}/>
-        <YAxis domain={[0.5, 7.5]} dataKey="happiness"/>
+        <XAxis scale={scale} dataKey="time" tickFormatter={dayMonthFormatter} ticks={ticks}/>
+        <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter}/>
       </LineChart>
     )
 

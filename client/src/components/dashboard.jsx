@@ -13,6 +13,12 @@ import {
 } from 'recharts';
 import { scaleTime } from 'd3-scale';
 
+import {
+  happinessTicks,
+  happinessFormatter,
+  makeDailyTimelineTicks
+} from '../charting';
+
 export default class Dashboard extends React.Component {
   constructor() {
     super();
@@ -44,20 +50,6 @@ export default class Dashboard extends React.Component {
       }
     }
 
-    let yAxisTicks = [1, 4, 7];
-    let yAxisFormatter = (happiness) => {
-      if (happiness === 1) {
-        return "☹️";
-      }
-      else if (happiness === 4) {
-        return "😐"
-      }
-      else if (happiness === 7) {
-        return "🙂"
-      }
-      return happiness;
-    };
-
     let top5Chart = null;
     let worst5Chart = null;
     if (this.state.dashboard) {
@@ -67,13 +59,13 @@ export default class Dashboard extends React.Component {
       worst5Data.reverse();
       top5Chart = <BarChart width={600} height={300} data={top5Data}>
         <XAxis dataKey="name" />
-        <YAxis dataKey="happiness" ticks={yAxisTicks} tickFormatter={yAxisFormatter} />
+        <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
         <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8"/>
       </BarChart>
 
       worst5Chart = <BarChart width={600} height={300} data={worst5Data}>
         <XAxis dataKey="name" />
-        <YAxis dataKey="happiness" ticks={yAxisTicks} tickFormatter={yAxisFormatter} />
+        <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
         <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
       </BarChart>
     }
@@ -94,38 +86,13 @@ export default class Dashboard extends React.Component {
       };
       const scale = scaleTime();
 
-      function tickMaker(firstVal, lastVal) {
-        let ticks = [];
-        let tick = firstVal;
-        const lastTickValue = lastVal;
-        while (lastTickValue > tick) {
-          ticks.push(tick);
-          tick += 86400000;
-        }
-        return ticks;
-      }
-
-      let ticks = tickMaker(averageHappinessOverTimeData[0].time, averageHappinessOverTimeData[averageHappinessOverTimeData.length - 1].time);
-
-      let yAxisTicks = [1, 4, 7];
-      let yAxisFormatter = (happiness) => {
-        if (happiness === 1) {
-          return "☹️";
-        }
-        else if (happiness === 4) {
-          return "😐"
-        }
-        else if (happiness === 7) {
-          return "🙂"
-        }
-        return happiness;
-      };
+      let ticks = makeDailyTimelineTicks(averageHappinessOverTimeData[0].time, averageHappinessOverTimeData[averageHappinessOverTimeData.length - 1].time);
 
       averageHappinessOverTimeChart = (
         <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
           <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
           <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={tickFormatDate} />
-          <YAxis dataKey="happiness" ticks={yAxisTicks} tickFormatter={yAxisFormatter} />
+          <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
         </LineChart>
       )
     }
