@@ -80,14 +80,18 @@ export default class Dashboard extends React.Component {
       };
       const scale = scaleTime();
 
-      let ticks = [];
-      let tick = averageHappinessOverTimeData[0].time;
-      const lastTickValue = averageHappinessOverTimeData[averageHappinessOverTimeData.length - 1].time;
-
-      while (lastTickValue > tick) {
-        ticks.push(tick);
-        tick += 86400000;
+      function tickMaker(firstVal, lastVal) {
+        let ticks = [];
+        let tick = firstVal;
+        const lastTickValue = lastVal;
+        while (lastTickValue > tick) {
+          ticks.push(tick);
+          tick += 86400000;
+        }
+        return ticks;
       }
+
+      let ticks = tickMaker(averageHappinessOverTimeData[0].time, averageHappinessOverTimeData[averageHappinessOverTimeData.length - 1].time);
 
       averageHappinessOverTimeChart = (
         <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
