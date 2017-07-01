@@ -11,6 +11,7 @@ import {
   XAxis,
   YAxis
 } from 'recharts';
+import { scaleTime } from 'd3-scale';
 
 export default class Dashboard extends React.Component {
   constructor() {
@@ -68,14 +69,21 @@ export default class Dashboard extends React.Component {
       let averageHappinessOverTimeData = this.state.dashboard.avgHappinessOverTime.map((happiness) => {
         return {
           happiness: happiness.happiness,
-          date: moment(happiness.created_at),
-          time: moment(happiness.created_at).toDate().getTime()
+          date: moment(happiness.date),
+          time: moment(happiness.date).toDate().getTime()
         };
       });
+
+      const tickFormatDate = (timeValue) => {
+        console.log(timeValue);
+        return moment(timeValue).format('MM/DD');
+      };
+      const scale = scaleTime();
+
       averageHappinessOverTimeChart = (
         <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
           <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey="time" scale={scale} tickFormatter={tickFormatDate} />
         </LineChart>
       )
     }
