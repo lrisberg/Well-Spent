@@ -80,10 +80,19 @@ export default class Dashboard extends React.Component {
       };
       const scale = scaleTime();
 
+      let ticks = [];
+      let tick = averageHappinessOverTimeData[0].time;
+      const lastTickValue = averageHappinessOverTimeData[averageHappinessOverTimeData.length - 1].time;
+
+      while (lastTickValue > tick) {
+        ticks.push(tick);
+        tick += 86400000;
+      }
+
       averageHappinessOverTimeChart = (
         <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
           <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
-          <XAxis dataKey="time" scale={scale} tickFormatter={tickFormatDate} />
+          <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={tickFormatDate} />
         </LineChart>
       )
     }
