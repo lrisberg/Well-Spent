@@ -22,7 +22,7 @@ export default class PurchaseDetails extends React.Component {
 
   componentDidMount() {
     let purchaseId = this.props.match.params.id;
-    if (isNaN(parseInt(purchaseId))) {
+    if (isNaN(parseInt(purchaseId, 10))) {
       return;
     }
     axios.get(`/api/purchases/${purchaseId}`)
@@ -42,19 +42,7 @@ export default class PurchaseDetails extends React.Component {
     }
     let purchaseName = this.state.purchase.name;
 
-    const happinessRows = this.state.purchase.happiness.map((happiness) => {
-      let formattedDate = moment.utc(happiness.created_at).format('dddd MMMM Do');
-      return (
-        <tr key={happiness.id}>
-          <td>
-            {formattedDate}
-          </td>
-          <td>
-            {happiness.happiness}
-          </td>
-        </tr>
-      )
-    })
+    // let formattedDate = moment.utc(happiness.created_at).format('dddd MMMM Do');
 
     let happinessAlert = null;
     if (this.state.purchase.promptForHappiness) {

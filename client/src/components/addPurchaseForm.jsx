@@ -106,7 +106,7 @@ class AddPurchaseForm extends React.Component {
 
       return (
         <li key={category.id}>
-          <a href="#" onClick={clickHandler}>{category.name}</a>
+          <a onClick={clickHandler}>{category.name}</a>
         </li>
       )
     });
