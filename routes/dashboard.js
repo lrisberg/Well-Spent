@@ -45,10 +45,10 @@ router.get('/', checkAuth, (req, res, next) => {
       })
       knexPromises.push(avgHappinessPerPurchasePromise);
 
-      let avgHappinessOverTimePromise = knex.raw("select date_trunc('day', created_at) as date, AVG(happiness) as happiness from happiness group by date order by date;").then((response) => {
+      let avgHappinessOverTimePromise = knex.raw("select date_trunc('day', happiness.created_at) as day, AVG(happiness) as happiness from happiness INNER JOIN purchases ON (purchases.id = happiness.purchase_id) where purchases.user_id = ? group by day order by day;", req.user.userId).then((response) => {
         averageHappinessOverTime = response.rows.map((row) => {
           return {
-            date: row.date,
+            date: row.day,
             happiness: parseFloat(row.happiness)
           };
         });
