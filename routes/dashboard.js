@@ -45,10 +45,22 @@ router.get('/', checkAuth, (req, res, next) => {
       })
       knexPromises.push(avgHappinessPerPurchasePromise);
 
+      let avgHappinessOverTimePromise = knex.raw("select date_trunc('day', created_at) AS created_at, AVG(happiness) AS happiness from happiness group by created_at order by created_at;").then((response) => {
+        averageHappinessOverTime = response.rows.map((row) => {
+          console.log(row);
+          return {
+            date: row.created_at,
+            happiness: parseFloat(row.happiness)
+          };
+        });
+      })
+      knexPromises.push(avgHappinessOverTimePromise);
+
       Promise.all(knexPromises).then(() => {
         res.send({
           numberOfNeedyPurchases: needyPurchases.length,
-          avgHappinessPerPurchase: averageHappinessPerPurchase
+          avgHappinessPerPurchase: averageHappinessPerPurchase,
+          avgHappinessOverTime: averageHappinessOverTime
         });
       })
     })

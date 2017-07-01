@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 import {
+  LineChart,
+  Line,
   BarChart,
   Bar,
   XAxis,
@@ -60,11 +63,29 @@ export default class Dashboard extends React.Component {
       </BarChart>
     }
 
+    let averageHappinessOverTimeChart = null;
+    if (this.state.dashboard) {
+      let averageHappinessOverTimeData = this.state.dashboard.avgHappinessOverTime.map((happiness) => {
+        return {
+          happiness: happiness.happiness,
+          date: moment(happiness.created_at),
+          time: moment(happiness.created_at).toDate().getTime()
+        };
+      });
+      averageHappinessOverTimeChart = (
+        <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
+          <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
+          <XAxis dataKey="date" />
+        </LineChart>
+      )
+    }
+
     return (
       <div>
         <h1>Dashboard</h1>
         {happinessAlert}
         <h4>Average Happiness Over Time</h4>
+        {averageHappinessOverTimeChart}
         <h4>Your Top Five Purchases</h4>
         {top5Chart}
         <h4>Your Worst Five Purchases</h4>
