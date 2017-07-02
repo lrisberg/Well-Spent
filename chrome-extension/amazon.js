@@ -4,11 +4,12 @@
 
   function attachTrackHappinessButtons() {
     for (let orderElem of document.getElementsByClassName('a-box-group')) {
+      const itemDate = extractItemDate(orderElem);
       for (let itemElem of orderElem.getElementsByClassName('a-fixed-left-grid')) {
         const itemName = extractItemName(itemElem);
         const itemPrice = extractItemPrice(itemElem);
 
-        let trackHappinessButton = createButton(itemName, itemPrice);
+        let trackHappinessButton = createButton(itemName, itemPrice, itemDate);
         let topMiniElem = itemElem.getElementsByClassName('a-spacing-top-mini')[0];
         topMiniElem.appendChild(trackHappinessButton);
       }
@@ -26,7 +27,27 @@
     return priceValue;
   }
 
-  function createButton(name, price) {
+  function extractItemDate(orderElem) {
+    let dateString = orderElem.getElementsByClassName('a-color-secondary')[1].innerText;
+    // YYYY-MM-dd
+    let parsedDate = new Date(dateString);
+    let year = parsedDate.getFullYear();
+    let month = (parsedDate.getMonth() + 1).toString();
+    month = zeroPadToTwoDigits(month);
+    let day = (parsedDate.getDate()).toString();
+    day = zeroPadToTwoDigits(day);
+    let fullDate = `${year}-${month}-${day}`
+    return fullDate;
+  }
+
+  function zeroPadToTwoDigits(value) {
+    if (value.length === 1) {
+      return `0${value}`;
+    }
+    return value;
+  }
+
+  function createButton(name, price, date) {
       let aDecl = document.createElement('span')
       aDecl.classList.add('a-declarative');
 
@@ -44,7 +65,7 @@
       aButtonInner.appendChild(aButtonText);
 
       aButton.onclick = function() {
-          window.location = newPurchaseUrl + `?name=${name}&price=${price}`;
+          window.location = newPurchaseUrl + `?name=${name}&price=${price}&date=${date}`;
       }
 
       return aDecl;
