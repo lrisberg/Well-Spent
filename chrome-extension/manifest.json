@@ -1,0 +1,10 @@
+{
+  "name": "Well Spent Amazon Chrome Extension",
+  "version": "0.1",
+  "manifest_version": 2,
+  "content_scripts": [{
+    "matches": ["https://www.amazon.com/gp/css/order-history/*"],
+    "js": ["amazon.js"],
+    "run_at": "document_end"
+  }]
+}
