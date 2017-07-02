@@ -1,18 +1,32 @@
 (function() {
   // constants
-  const newPurchaseUrl = 'https://wellspent.herokuapp.com/';
+  const newPurchaseUrl = 'https://wellspent.herokuapp.com/purchases/new';
 
   function attachTrackHappinessButtons() {
     for (let orderElem of document.getElementsByClassName('a-box-group')) {
       for (let itemElem of orderElem.getElementsByClassName('a-fixed-left-grid')) {
-        let trackHappinessButton = createButton();
+        const itemName = extractItemName(itemElem);
+        const itemPrice = extractItemPrice(itemElem);
+
+        let trackHappinessButton = createButton(itemName, itemPrice);
         let topMiniElem = itemElem.getElementsByClassName('a-spacing-top-mini')[0];
         topMiniElem.appendChild(trackHappinessButton);
       }
     }
   }
 
-  function createButton() {
+  function extractItemName(itemElem) {
+    let name = itemElem.getElementsByClassName('a-link-normal')[1].innerText;
+    return name;
+  }
+
+  function extractItemPrice(itemElem) {
+    let price = itemElem.getElementsByClassName('a-color-price')[0].innerText;
+    let priceValue = price.substring(1)
+    return priceValue;
+  }
+
+  function createButton(name, price) {
       let aDecl = document.createElement('span')
       aDecl.classList.add('a-declarative');
 
@@ -30,7 +44,7 @@
       aButtonInner.appendChild(aButtonText);
 
       aButton.onclick = function() {
-          window.location = newPurchaseUrl;
+          window.location = newPurchaseUrl + `?name=${name}&price=${price}`;
       }
 
       return aDecl;
