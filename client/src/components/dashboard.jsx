@@ -127,7 +127,7 @@ export default class Dashboard extends React.Component {
         <div className="row">
           <div className="col-md-12">
             <h4>Average Happiness Over Time</h4>
-            <div style={{height: "400px"}}>
+            <div className="dashboard-chart">
               {averageHappinessOverTimeChart}
             </div>
           </div>
@@ -135,13 +135,13 @@ export default class Dashboard extends React.Component {
         <div className="row">
           <div className="col-md-6">
             <h4>Your Top Five Purchases</h4>
-            <div style={{height: "400px"}}>
+            <div className="dashboard-chart">
               {top5Chart}
             </div>
           </div>
           <div className="col-md-6">
             <h4>Your Worst Five Purchases</h4>
-            <div style={{height: "400px"}}>
+            <div className="dashboard-chart">
               {worst5Chart}
             </div>
           </div>
@@ -149,7 +149,7 @@ export default class Dashboard extends React.Component {
         <div className="row">
           <div className="col-md-12">
             <h4>Average Happiness By Category</h4>
-            <div style={{height: "400px"}}>
+            <div className="dashboard-chart">
               {averageHappinessByCategoryChart}
             </div>
           </div>
