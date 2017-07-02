@@ -9,7 +9,8 @@ import {
   BarChart,
   Bar,
   XAxis,
-  YAxis
+  YAxis,
+  ResponsiveContainer
 } from 'recharts';
 import { scaleTime } from 'd3-scale';
 
@@ -34,7 +35,6 @@ export default class Dashboard extends React.Component {
         this.setState({
           dashboard: response.data
         })
-        console.log(this.state.dashboard);
     })
   }
 
@@ -58,17 +58,23 @@ export default class Dashboard extends React.Component {
       let top5Data = happinessPerPurchaseData.slice(0, 5);
       let worst5Data = happinessPerPurchaseData.slice((happinessPerPurchaseData.length - 5), happinessPerPurchaseData.length)
       worst5Data.reverse();
-      top5Chart = <BarChart width={600} height={300} data={top5Data}>
-        <XAxis dataKey="name" />
-        <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-        <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8"/>
-      </BarChart>
+      top5Chart =
+      <ResponsiveContainer>
+        <BarChart data={top5Data}>
+          <XAxis dataKey="name" />
+          <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
+          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8"/>
+        </BarChart>
+      </ResponsiveContainer>
 
-      worst5Chart = <BarChart width={600} height={300} data={worst5Data}>
+      worst5Chart =
+      <ResponsiveContainer>
+        <BarChart data={worst5Data}>
         <XAxis dataKey="name" />
         <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
         <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
       </BarChart>
+    </ResponsiveContainer>
     }
 
     let averageHappinessOverTimeChart = null;
@@ -86,11 +92,13 @@ export default class Dashboard extends React.Component {
       let ticks = makeDailyTimelineTicks(averageHappinessOverTimeData[0].time, averageHappinessOverTimeData[averageHappinessOverTimeData.length - 1].time);
 
       averageHappinessOverTimeChart = (
-        <LineChart width={800} height={400} data={averageHappinessOverTimeData}>
-          <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
-          <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={dayMonthFormatter} />
-          <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-        </LineChart>
+        <ResponsiveContainer>
+          <LineChart data={averageHappinessOverTimeData}>
+            <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
+            <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={dayMonthFormatter} />
+            <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
+          </LineChart>
+        </ResponsiveContainer>
       )
     }
 
@@ -102,27 +110,50 @@ export default class Dashboard extends React.Component {
           happiness: happiness.happiness
         }
       })
-      averageHappinessByCategoryChart = <BarChart width={600} height={300} data={averageHappinessByCategoryData}>
-        <XAxis dataKey="category" />
-        <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-        <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
-      </BarChart>
+      averageHappinessByCategoryChart =
+      <ResponsiveContainer>
+        <BarChart data={averageHappinessByCategoryData}>
+          <XAxis dataKey="category" />
+          <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
+          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
+        </BarChart>
+      </ResponsiveContainer>
     }
-
-
 
     return (
       <div>
         <h1>Dashboard</h1>
         {happinessAlert}
-        <h4>Average Happiness Over Time</h4>
-        {averageHappinessOverTimeChart}
-        <h4>Your Top Five Purchases</h4>
-        {top5Chart}
-        <h4>Your Worst Five Purchases</h4>
-        {worst5Chart}
-        <h4>Average Happiness By Category</h4>
-        {averageHappinessByCategoryChart}
+        <div className="row">
+          <div className="col-md-12">
+            <h4>Average Happiness Over Time</h4>
+            <div style={{height: "400px"}}>
+              {averageHappinessOverTimeChart}
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-6">
+            <h4>Your Top Five Purchases</h4>
+            <div style={{height: "400px"}}>
+              {top5Chart}
+            </div>
+          </div>
+          <div className="col-md-6">
+            <h4>Your Worst Five Purchases</h4>
+            <div style={{height: "400px"}}>
+              {worst5Chart}
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <h4>Average Happiness By Category</h4>
+            <div style={{height: "400px"}}>
+              {averageHappinessByCategoryChart}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
