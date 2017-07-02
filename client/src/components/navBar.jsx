@@ -20,6 +20,7 @@ class Navbar extends React.Component {
     let signOutButton = null;
     let purchasesButton = null;
     let dashboardButton = null;
+    let downloadButton = null;
     if (!this.props.loggedIn) {
       signUpButton = (
         <li role="presentation">
@@ -48,12 +49,18 @@ class Navbar extends React.Component {
           <Link to="/dashboard">Dashboard</Link>
         </li>
       )
+      downloadButton = (
+        <li role="presentation">
+          <a href="/downloads/chrome-extension.crx">Download Chrome Extension</a>
+        </li>
+      )
     }
 
     return (
       <div className="header clearfix">
         <nav>
           <ul className="nav nav-pills pull-right">
+            {downloadButton}
             {dashboardButton}
             {purchasesButton}
             {signUpButton}
