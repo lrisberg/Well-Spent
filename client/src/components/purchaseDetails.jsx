@@ -32,10 +32,10 @@ export default class PurchaseDetails extends React.Component {
   deletePurchaseFunc() {
     let purchaseId = this.props.match.params.id;
     axios.delete(`/api/purchases/${purchaseId}`)
-    .then((response) => {
-      console.log(response.data);
-    })
-    this.props.history.push('/purchases');
+      .then((response) => {
+        this.props.history.push('/purchases');
+      })
+
   }
 
   componentDidMount() {

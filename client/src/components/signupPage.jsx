@@ -32,7 +32,7 @@ export default class SignupPage extends React.Component {
       password: this.state.password
     })
     .then((response) => {
-      console.log(response);
+      this.props.history.push('/dashboard');
     })
     .catch((error) => {
       console.error(error);
