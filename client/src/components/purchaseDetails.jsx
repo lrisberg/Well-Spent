@@ -25,7 +25,18 @@ export default class PurchaseDetails extends React.Component {
       purchase: null,
       happiness: null
     };
+
+    this.deletePurchaseFunc = this.deletePurchaseFunc.bind(this);
   };
+
+  deletePurchaseFunc() {
+    let purchaseId = this.props.match.params.id;
+    axios.delete(`/api/purchases/${purchaseId}`)
+    .then((response) => {
+      console.log(response.data);
+    })
+    this.props.history.push('/purchases');
+  }
 
   componentDidMount() {
     let purchaseId = this.props.match.params.id;
@@ -74,7 +85,14 @@ export default class PurchaseDetails extends React.Component {
 
     const scale = scaleTime();
 
-    let ticks = makeDailyTimelineTicks(chartData[0].time, chartData[chartData.length - 1].time)
+    let ticks;
+    if (chartData[0] === undefined) {
+      console.log('undefiend!');
+    }
+    else {
+      ticks = makeDailyTimelineTicks(chartData[0].time, chartData[chartData.length - 1].time)
+    }
+
 
     let chart = (
       <LineChart width={800} height={400} data={chartData}>
@@ -89,6 +107,7 @@ export default class PurchaseDetails extends React.Component {
         <h1>{purchaseName} Details</h1>
         {happinessAlert}
         {chart}
+        <a onClick={this.deletePurchaseFunc} className="btn btn-success" role="button">Delete Purchase</a>
       </div>
     )
   }

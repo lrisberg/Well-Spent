@@ -34,7 +34,7 @@ export default class Purchases extends React.Component {
     return (
       <div>
         <h1>Purchases</h1>
-        <Link to="/purchases/new">Add a purchase</Link>
+        <Link to="/purchases/new" className="btn btn-success" role="button">Add Purchase</Link>
         <table className="table">
           <thead>
             <tr>

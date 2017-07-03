@@ -75,4 +75,28 @@ router.get('/:id', checkAuth, (req, res, next) => {
     })
 })
 
+router.delete('/:id', checkAuth, (req, res, next) => {
+
+  let id = req.params.id;
+
+  if (isNaN(parseInt(id))) {
+    notFound(res)
+    return;
+  }
+
+  knex('purchases')
+    .returning(["name", "price", "created_at"])
+    .where('id', req.params.id)
+    .del()
+    .then((purchases) => {
+      if (purchases.length === 0) {
+        response.notFound(res);
+        return;
+      }
+      else {
+        res.send(purchases[0]);
+      }
+    })
+})
+
 module.exports = router;
