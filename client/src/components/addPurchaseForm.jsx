@@ -124,7 +124,10 @@ class AddPurchaseForm extends React.Component {
           </div>
           <div className="form-group">
             <label>Price</label>
-            <input value={this.state.price} onChange={this.handleChangePrice} type="number" className="form-control" placeholder="Price (e.g. '10.24')" />
+            <div className="input-group">
+              <div className="input-group-addon">$</div>
+              <input value={this.state.price} onChange={this.handleChangePrice} type="number" className="form-control" placeholder="Price (e.g. '10.24')" />
+            </div>
           </div>
 
           <div className="dropdown">
