@@ -63,6 +63,17 @@ export default class PurchaseDetails extends React.Component {
     }
     let purchaseName = this.state.purchase.name;
 
+    let enoughData = this.state.purchase.happiness.length > 1;
+    let notEnoughDataAlert;
+    if (!enoughData) {
+      notEnoughDataAlert = (
+        <div className="alert alert-warning" role="alert">
+          <strong>Not enough data! </strong>
+          <span>Once you have at least two data points we'll show you a cool chart.</span>
+        </div>
+      )
+    }
+
     // let formattedDate = moment.utc(happiness.created_at).format('dddd MMMM Do');
 
     let happinessAlert = null;
@@ -70,7 +81,7 @@ export default class PurchaseDetails extends React.Component {
       let addHappinessPath = `/purchases/${this.state.purchase.id}/happiness/new`;
       happinessAlert = (
         <div className="alert alert-info" role="alert">
-          <Link to={addHappinessPath}>This purchase is ready for your input.</Link>
+          <strong>It's data time! </strong> Click <Link to={addHappinessPath}>here</Link> to record more data.
         </div>
       )
     }
@@ -95,18 +106,19 @@ export default class PurchaseDetails extends React.Component {
     else {
       ticks = makeDailyTimelineTicks(chartData[0].time, chartData[chartData.length - 1].time)
     }
-
-    let chart = (
-      <ResponsiveContainer>
-        <LineChart width={800} height={400} data={chartData}>
-          <Line type="monotone" dataKey="happiness" stroke="#196DB6" />
-          <XAxis scale={scale} dataKey="time" tickFormatter={dayMonthFormatter} ticks={ticks}/>
-          <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter}/>
-        </LineChart>
-      </ResponsiveContainer>
-    )
-
-    chart = makeChartPanel(chart, {xaxis: 'Time', yaxis: 'Purchase Satisfaction'});
+    let chart;
+    if (enoughData) {
+      chart = (
+        <ResponsiveContainer>
+          <LineChart width={800} height={400} data={chartData}>
+            <Line type="monotone" dataKey="happiness" stroke="#196DB6" />
+            <XAxis scale={scale} dataKey="time" tickFormatter={dayMonthFormatter} ticks={ticks}/>
+            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter}/>
+          </LineChart>
+        </ResponsiveContainer>
+      )
+      chart = makeChartPanel(chart, {xaxis: 'Time', yaxis: 'Purchase Satisfaction'});
+    }
 
     return (
       <div className="page">
@@ -115,6 +127,7 @@ export default class PurchaseDetails extends React.Component {
           <a onClick={this.deletePurchaseFunc} className="btn btn-danger" role="button">Delete Purchase</a>
         </div>
         {happinessAlert}
+        {notEnoughDataAlert}
         {chart}
       </div>
     )
