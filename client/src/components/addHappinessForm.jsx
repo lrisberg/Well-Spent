@@ -2,12 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
+const queryString = require('query-string');
+
 class AddHappinessForm extends React.Component {
   constructor() {
     super();
     this.state = {
       purchase: null,
-      happiness: null
+      happiness: null,
+      remainingIds: null
     };
 
     this.handleChangeHappiness = this.handleChangeHappiness.bind(this);
@@ -15,12 +18,19 @@ class AddHappinessForm extends React.Component {
   };
 
   componentDidMount() {
+    let parsed = queryString.parse(this.props.location.search);
+    let remainingArray = !parsed.remaining ? [] : parsed.remaining.split(',');
+
+    this.setState({
+      remainingIds: remainingArray
+    })
+
     let purchaseId = this.props.match.params.id;
 
     axios.get(`/api/purchases/${purchaseId}`)
       .then((purchaseResponse) => {
         this.setState({
-          purchase: purchaseResponse.data
+          purchase: purchaseResponse.data,
         });
       });
   }
@@ -32,12 +42,21 @@ class AddHappinessForm extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+
     const purchaseId = this.props.match.params.id;
     axios.post(`/api/purchases/${purchaseId}/happiness`, {
       happiness: this.state.happiness
     })
     .then((response) => {
-      this.props.history.push(`/purchases/${purchaseId}`);
+      if (this.state.remainingIds.length === 0) {
+        this.props.history.push(`/purchases/${purchaseId}`);
+      }
+      else {
+        let nextId = this.state.remainingIds[0];
+        let remaining = this.state.remainingIds.slice(1).join(',');
+        this.props.history.push(`/purchases/${nextId}/happiness/new?remaining=${remaining}`)
+      }
     })
     event.preventDefault();
   }
