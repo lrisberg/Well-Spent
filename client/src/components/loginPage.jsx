@@ -45,17 +45,26 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label>Email address</label>
-            <input type="email" value={this.state.email} onChange={this.handleChangeEmail} className="form-control" placeholder="Email" />
+        <div className="row">
+          <div className="col-xs-12 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+            <div className="panel panel-default panel-login">
+              <div className="panel-body">
+                <h3 className="text-center">Login to Well Spent</h3>
+                <form onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                    <label>Email address</label>
+                    <input type="email" value={this.state.email} onChange={this.handleChangeEmail} className="form-control" placeholder="Email" />
+                  </div>
+                  <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" value={this.state.password} onChange={this.handleChangePassword} className="form-control" placeholder="Password" />
+                  </div>
+                  <button type="submit" className="btn btn-primary pull-right">Log In</button>
+                </form>
+              </div>
+            </div>
           </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" value={this.state.password} onChange={this.handleChangePassword} className="form-control" placeholder="Password" />
-          </div>
-          <button type="submit" className="btn btn-default">Log In</button>
-        </form>
+        </div>
       </div>
     );
   };
