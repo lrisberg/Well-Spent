@@ -27,6 +27,7 @@ export default class SplashPage extends React.Component {
                 </div>
                 <div className="panel-body">
                   <p>See your satisfaction with your purchases displayed over time and category. See what makes you happy and what doesn't.</p>
+                  <img className="img-thumbnail" src="/images/chart.png" />
                 </div>
               </div>
             </div>
@@ -37,6 +38,7 @@ export default class SplashPage extends React.Component {
                 </div>
                 <div className="panel-body">
                   <p>Seamlessly add purchases from Amazon with a click of a button using our Chrome Extension.</p>
+                  <img className="img-thumbnail" src="/images/amazon.png" />
                 </div>
               </div>
             </div>
@@ -47,6 +49,7 @@ export default class SplashPage extends React.Component {
                 </div>
                 <div className="panel-body">
                   <p>Be notified when it's time to add more data. Never miss a data point again.</p>
+                  <img className="img-thumbnail" src="/images/notification.png" />
                 </div>
               </div>
             </div>
