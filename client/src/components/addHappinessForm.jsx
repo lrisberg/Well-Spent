@@ -55,10 +55,9 @@ class AddHappinessForm extends React.Component {
       else {
         let nextId = this.state.remainingIds[0];
         let remaining = this.state.remainingIds.slice(1).join(',');
-        this.props.history.push(`/purchases/${nextId}/happiness/new?remaining=${remaining}`)
+        window.location = `/purchases/${nextId}/happiness/new?remaining=${remaining}`;
       }
     })
-    event.preventDefault();
   }
 
   isFormValid() {
