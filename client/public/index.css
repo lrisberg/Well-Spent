@@ -105,3 +105,28 @@
 .panel-chart .panel-title {
   text-align: center;
 }
+
+.splash-hero {
+  background-image: url("/images/wheat.jpg");
+  background-size: cover;
+  background-position-y: 45%;
+  height: 340px;
+  margin-top: -20px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #999;
+  border-top: 1px solid #ccc;
+}
+
+.splash-heading {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+}
+
+.hero-body {
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 50px;
+  display: inline-block;
+  padding: 15px;
+}
