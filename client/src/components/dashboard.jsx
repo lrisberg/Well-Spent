@@ -40,6 +40,21 @@ export default class Dashboard extends React.Component {
 
   render() {
 
+    function makeChartPanel(chart, title) {
+      return (
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h3 className="panel-title">{title}</h3>
+          </div>
+          <div className="panel-body">
+            <div className="dashboard-chart">
+              {chart}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
     let happinessAlert = null;
     if (this.state.dashboard) {
       if (this.state.dashboard.numberOfNeedyPurchases > 0) {
@@ -58,23 +73,29 @@ export default class Dashboard extends React.Component {
       let top5Data = happinessPerPurchaseData.slice(0, 5);
       let worst5Data = happinessPerPurchaseData.slice((happinessPerPurchaseData.length - 5), happinessPerPurchaseData.length)
       worst5Data.reverse();
-      top5Chart =
-      <ResponsiveContainer>
-        <BarChart data={top5Data}>
+      top5Chart = (
+        <ResponsiveContainer>
+          <BarChart data={top5Data}>
+            <XAxis dataKey="name" />
+            <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
+            <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6"/>
+          </BarChart>
+        </ResponsiveContainer>
+      )
+
+      top5Chart = makeChartPanel(top5Chart, "Your Top Five Purchases")
+
+      worst5Chart = (
+        <ResponsiveContainer>
+          <BarChart data={worst5Data}>
           <XAxis dataKey="name" />
           <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6"/>
+          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
         </BarChart>
       </ResponsiveContainer>
+      )
 
-      worst5Chart =
-      <ResponsiveContainer>
-        <BarChart data={worst5Data}>
-        <XAxis dataKey="name" />
-        <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-        <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
-      </BarChart>
-    </ResponsiveContainer>
+      worst5Chart = makeChartPanel(worst5Chart, "Your Worst Five Purchases");
     }
 
     let averageHappinessOverTimeChart = null;
@@ -100,6 +121,8 @@ export default class Dashboard extends React.Component {
           </LineChart>
         </ResponsiveContainer>
       )
+
+      averageHappinessOverTimeChart = makeChartPanel(averageHappinessOverTimeChart, "Average Satisfaction Over Time")
     }
 
     let averageHappinessByCategoryChart = null;
@@ -110,14 +133,17 @@ export default class Dashboard extends React.Component {
           happiness: happiness.happiness
         }
       })
-      averageHappinessByCategoryChart =
-      <ResponsiveContainer>
-        <BarChart data={averageHappinessByCategoryData}>
-          <XAxis dataKey="category" />
-          <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
-        </BarChart>
-      </ResponsiveContainer>
+      averageHappinessByCategoryChart = (
+        <ResponsiveContainer>
+          <BarChart data={averageHappinessByCategoryData}>
+            <XAxis dataKey="category" />
+            <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
+            <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
+          </BarChart>
+        </ResponsiveContainer>
+      )
+
+      averageHappinessByCategoryChart = makeChartPanel(averageHappinessByCategoryChart, "Average Satisfaction By Category")
     }
 
     return (
@@ -126,32 +152,20 @@ export default class Dashboard extends React.Component {
         {happinessAlert}
         <div className="row">
           <div className="col-md-12">
-            <h4>Average Happiness Over Time</h4>
-            <div className="dashboard-chart">
-              {averageHappinessOverTimeChart}
-            </div>
+            {averageHappinessOverTimeChart}
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
-            <h4>Your Top Five Purchases</h4>
-            <div className="dashboard-chart">
-              {top5Chart}
-            </div>
+            {top5Chart}
           </div>
           <div className="col-md-6">
-            <h4>Your Worst Five Purchases</h4>
-            <div className="dashboard-chart">
-              {worst5Chart}
-            </div>
+            {worst5Chart}
           </div>
         </div>
         <div className="row">
           <div className="col-md-12">
-            <h4>Average Happiness By Category</h4>
-            <div className="dashboard-chart">
-              {averageHappinessByCategoryChart}
-            </div>
+            {averageHappinessByCategoryChart}
           </div>
         </div>
       </div>
