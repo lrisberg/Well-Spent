@@ -32,7 +32,8 @@ class AddPurchaseForm extends React.Component {
     axios.get('/api/categories')
       .then((response) => {
         this.setState({
-          categories: response.data
+          categories: response.data,
+          category: response.data[1]
         })
       })
   }
@@ -130,20 +131,24 @@ class AddPurchaseForm extends React.Component {
             </div>
           </div>
 
-          <div className="dropdown">
-            <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              {selectedCategory}
-              <span className="caret"></span>
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-              {categoryRows}
-            </ul>
-          </div>
-
           <div className="form-group">
             <label>Date Purchased</label>
             <input type="date" value={this.state.date} onChange={this.handleChangeDate} className="form-control" placeholder="Date purchased" />
           </div>
+
+          <div className="form-group">
+            <label>Category</label>
+            <div className="dropdown">
+              <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {selectedCategory}
+                <span className="caret"></span>
+              </button>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                {categoryRows}
+              </ul>
+            </div>
+          </div>
+
           <button disabled={!isValid} type="submit" className="btn btn-default">Add Purchase</button>
         </form>
       </div>
