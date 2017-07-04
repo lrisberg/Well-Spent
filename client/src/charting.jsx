@@ -27,3 +27,5 @@ export function makeDailyTimelineTicks(firstTimeVal, lastTimeVal) {
 export const dayMonthFormatter = (timeValue) => {
   return moment(timeValue).format('MM/DD');
 }
+
+export const happinessDomain = [0, 8];
