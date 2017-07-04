@@ -38,6 +38,17 @@ export default class Dashboard extends React.Component {
     })
   }
 
+  getBestPurchaseData() {
+    let data = this.state.dashboard.avgHappinessPerPurchase.filter((data) => data.happiness !== null);
+    return data.slice(0, Math.ceil(data.length / 2));
+  }
+
+  getWorstPurchaseData() {
+    let data = this.state.dashboard.avgHappinessPerPurchase.filter((data) => data.happiness !== null);
+    data.reverse();
+    return data.slice(0, Math.floor(data.length / 2));
+  }
+
   render() {
 
     function makeChartPanel(chart, title) {
@@ -66,16 +77,13 @@ export default class Dashboard extends React.Component {
       }
     }
 
-    let top5Chart = null;
-    let worst5Chart = null;
+    let bestChart = null;
+    let worstChart = null;
     if (this.state.dashboard) {
-      let happinessPerPurchaseData = this.state.dashboard.avgHappinessPerPurchase.filter((data) => data.happiness !== null);
-      let top5Data = happinessPerPurchaseData.slice(0, 5);
-      let worst5Data = happinessPerPurchaseData.slice((happinessPerPurchaseData.length - 5), happinessPerPurchaseData.length)
-      worst5Data.reverse();
-      top5Chart = (
+      let bestData = this.getBestPurchaseData();
+      bestChart = (
         <ResponsiveContainer>
-          <BarChart data={top5Data}>
+          <BarChart data={bestData}>
             <XAxis dataKey="name" />
             <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
             <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6"/>
@@ -83,11 +91,12 @@ export default class Dashboard extends React.Component {
         </ResponsiveContainer>
       )
 
-      top5Chart = makeChartPanel(top5Chart, "Your Top Five Purchases")
+      bestChart = makeChartPanel(bestChart, "Your Best Purchases")
 
-      worst5Chart = (
+      let worstData = this.getWorstPurchaseData();
+      worstChart = (
         <ResponsiveContainer>
-          <BarChart data={worst5Data}>
+          <BarChart data={worstData}>
           <XAxis dataKey="name" />
           <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
           <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
@@ -95,7 +104,7 @@ export default class Dashboard extends React.Component {
       </ResponsiveContainer>
       )
 
-      worst5Chart = makeChartPanel(worst5Chart, "Your Worst Five Purchases");
+      worstChart = makeChartPanel(worstChart, "Your Worst Purchases");
     }
 
     let averageHappinessOverTimeChart = null;
@@ -157,10 +166,10 @@ export default class Dashboard extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-6">
-            {top5Chart}
+            {bestChart}
           </div>
           <div className="col-md-6">
-            {worst5Chart}
+            {worstChart}
           </div>
         </div>
         <div className="row">
