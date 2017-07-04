@@ -135,3 +135,20 @@
   height: 25px;
   margin-right: 5px;
 }
+
+.fact {
+  margin-bottom: 20px;
+}
+
+.fact.fact-quote {
+  font-size: 30px;
+  font-style: italic;
+  font-weight: bold;
+  color: #666;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.fact.fact-details {
+  font-size: 15px;
+}
