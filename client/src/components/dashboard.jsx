@@ -78,7 +78,7 @@ export default class Dashboard extends React.Component {
         </ResponsiveContainer>
       )
 
-      bestChart = makeChartPanel(bestChart, "Your Best Purchases")
+      bestChart = makeChartPanel(bestChart, {title: "Your Best Purchases"});
 
       let worstData = this.getWorstPurchaseData();
       worstChart = (
@@ -91,7 +91,7 @@ export default class Dashboard extends React.Component {
       </ResponsiveContainer>
       )
 
-      worstChart = makeChartPanel(worstChart, "Your Worst Purchases");
+      worstChart = makeChartPanel(worstChart, {title: "Your Worst Purchases"});
     }
 
     let averageHappinessOverTimeChart = null;
@@ -118,7 +118,7 @@ export default class Dashboard extends React.Component {
         </ResponsiveContainer>
       )
 
-      averageHappinessOverTimeChart = makeChartPanel(averageHappinessOverTimeChart, "Average Satisfaction Over Time")
+      averageHappinessOverTimeChart = makeChartPanel(averageHappinessOverTimeChart, {title: "Average Satisfaction Over Time"})
     }
 
     let averageHappinessByCategoryChart = null;
@@ -139,7 +139,7 @@ export default class Dashboard extends React.Component {
         </ResponsiveContainer>
       )
 
-      averageHappinessByCategoryChart = makeChartPanel(averageHappinessByCategoryChart, "Average Satisfaction By Category")
+      averageHappinessByCategoryChart = makeChartPanel(averageHappinessByCategoryChart, {title: "Average Satisfaction By Category"})
     }
 
     return (

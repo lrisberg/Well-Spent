@@ -29,8 +29,13 @@ export const dayMonthFormatter = (timeValue) => {
   return moment(timeValue).format('MM/DD');
 }
 
-export function makeChartPanel(chart, title) {
+export function makeChartPanel(chart, options) {
   let titleElement;
+
+  let title = options.title || null;
+  let xaxis = options.xaxis || null;
+  let yaxis = options.yaxis || null;
+
   if (title) {
     titleElement = (
       <div className="panel-heading">
@@ -39,12 +44,14 @@ export function makeChartPanel(chart, title) {
     )
   }
   return (
-    <div className="panel panel-default">
+    <div className="panel panel-chart panel-default">
       {titleElement}
       <div className="panel-body">
+        <p className="yaxis">{yaxis}</p>
         <div className="dashboard-chart">
           {chart}
         </div>
+        <p className="text-center">{xaxis}</p>
       </div>
     </div>
   )

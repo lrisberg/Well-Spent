@@ -96,7 +96,6 @@ export default class PurchaseDetails extends React.Component {
       ticks = makeDailyTimelineTicks(chartData[0].time, chartData[chartData.length - 1].time)
     }
 
-
     let chart = (
       <ResponsiveContainer>
         <LineChart width={800} height={400} data={chartData}>
@@ -107,7 +106,7 @@ export default class PurchaseDetails extends React.Component {
       </ResponsiveContainer>
     )
 
-    chart = makeChartPanel(chart, null);
+    chart = makeChartPanel(chart, {xaxis: 'Time', yaxis: 'Purchase Satisfaction'});
 
     return (
       <div className="page">
