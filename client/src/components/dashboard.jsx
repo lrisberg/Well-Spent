@@ -63,7 +63,7 @@ export default class Dashboard extends React.Component {
         <BarChart data={top5Data}>
           <XAxis dataKey="name" />
           <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8"/>
+          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6"/>
         </BarChart>
       </ResponsiveContainer>
 
@@ -72,7 +72,7 @@ export default class Dashboard extends React.Component {
         <BarChart data={worst5Data}>
         <XAxis dataKey="name" />
         <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-        <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
+        <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
       </BarChart>
     </ResponsiveContainer>
     }
@@ -94,7 +94,7 @@ export default class Dashboard extends React.Component {
       averageHappinessOverTimeChart = (
         <ResponsiveContainer>
           <LineChart data={averageHappinessOverTimeData}>
-            <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
+            <Line type="monotone" dataKey="happiness" stroke="#196DB6" />
             <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={dayMonthFormatter} />
             <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
           </LineChart>
@@ -115,7 +115,7 @@ export default class Dashboard extends React.Component {
         <BarChart data={averageHappinessByCategoryData}>
           <XAxis dataKey="category" />
           <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter} />
-          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#8884d8" />
+          <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
         </BarChart>
       </ResponsiveContainer>
     }

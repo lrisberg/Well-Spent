@@ -96,7 +96,7 @@ export default class PurchaseDetails extends React.Component {
 
     let chart = (
       <LineChart width={800} height={400} data={chartData}>
-        <Line type="monotone" dataKey="happiness" stroke="#8884d8" />
+        <Line type="monotone" dataKey="happiness" stroke="#196DB6" />
         <XAxis scale={scale} dataKey="time" tickFormatter={dayMonthFormatter} ticks={ticks}/>
         <YAxis dataKey="happiness" ticks={happinessTicks} tickFormatter={happinessFormatter}/>
       </LineChart>
