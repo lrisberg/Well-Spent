@@ -104,11 +104,17 @@ export default class PurchaseDetails extends React.Component {
     )
 
     return (
-      <div>
-        <h1>{purchaseName} Details</h1>
+      <div className="page">
+        <h1 className="page-heading">{purchaseName}</h1>
+        <div className="page-buttons">
+          <a onClick={this.deletePurchaseFunc} className="btn btn-danger" role="button">Delete Purchase</a>
+        </div>
         {happinessAlert}
-        {chart}
-        <a onClick={this.deletePurchaseFunc} className="btn btn-success" role="button">Delete Purchase</a>
+        <div className="panel panel-default">
+          <div className="panel-body">
+            {chart}
+          </div>
+        </div>
       </div>
     )
   }
