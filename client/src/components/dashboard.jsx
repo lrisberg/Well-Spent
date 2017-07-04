@@ -19,7 +19,8 @@ import {
   happinessFormatter,
   makeDailyTimelineTicks,
   dayMonthFormatter,
-  happinessDomain
+  happinessDomain,
+  makeChartPanel
 } from '../charting';
 
 export default class Dashboard extends React.Component {
@@ -51,21 +52,6 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-
-    function makeChartPanel(chart, title) {
-      return (
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">{title}</h3>
-          </div>
-          <div className="panel-body">
-            <div className="dashboard-chart">
-              {chart}
-            </div>
-          </div>
-        </div>
-      )
-    }
 
     let happinessAlert = null;
     if (this.state.dashboard) {

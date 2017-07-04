@@ -6,7 +6,8 @@ import {
   LineChart,
   Line,
   XAxis,
-  YAxis
+  YAxis,
+  ResponsiveContainer
 } from 'recharts';
 import { scaleTime } from 'd3-scale';
 
@@ -15,7 +16,8 @@ import {
   happinessFormatter,
   makeDailyTimelineTicks,
   dayMonthFormatter,
-  happinessDomain
+  happinessDomain,
+  makeChartPanel
 } from '../charting';
 
 
@@ -96,12 +98,16 @@ export default class PurchaseDetails extends React.Component {
 
 
     let chart = (
-      <LineChart width={800} height={400} data={chartData}>
-        <Line type="monotone" dataKey="happiness" stroke="#196DB6" />
-        <XAxis scale={scale} dataKey="time" tickFormatter={dayMonthFormatter} ticks={ticks}/>
-        <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter}/>
-      </LineChart>
+      <ResponsiveContainer>
+        <LineChart width={800} height={400} data={chartData}>
+          <Line type="monotone" dataKey="happiness" stroke="#196DB6" />
+          <XAxis scale={scale} dataKey="time" tickFormatter={dayMonthFormatter} ticks={ticks}/>
+          <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter}/>
+        </LineChart>
+      </ResponsiveContainer>
     )
+
+    chart = makeChartPanel(chart, null);
 
     return (
       <div className="page">
@@ -110,11 +116,7 @@ export default class PurchaseDetails extends React.Component {
           <a onClick={this.deletePurchaseFunc} className="btn btn-danger" role="button">Delete Purchase</a>
         </div>
         {happinessAlert}
-        <div className="panel panel-default">
-          <div className="panel-body">
-            {chart}
-          </div>
-        </div>
+        {chart}
       </div>
     )
   }
