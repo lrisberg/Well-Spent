@@ -2,7 +2,7 @@
   font-family: 'Lato', sans-serif;
 }
 
-body {
+/*body {
   background-color: #D2EBFD;
 }
 
@@ -19,7 +19,7 @@ body {
 
 .text-muted {
   color: #2974B3;
-}
+}*/
 
 .dashboard-chart {
   height: 325px;
