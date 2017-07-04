@@ -32,9 +32,11 @@ export default class Purchases extends React.Component {
     });
 
     return (
-      <div>
+      <div className="page">
         <h1>Purchases</h1>
-        <Link to="/purchases/new" className="btn btn-success" role="button">Add Purchase</Link>
+        <div className="page-buttons">
+          <Link to="/purchases/new" className="btn btn-primary pull-right" role="button">Add Purchase</Link>
+        </div>
         <table className="table">
           <thead>
             <tr>

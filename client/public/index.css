@@ -54,3 +54,13 @@
     margin-top: 0px;
   }
 }
+
+.page-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.page {
+  position: relative;
+}
