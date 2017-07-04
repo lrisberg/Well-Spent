@@ -6,7 +6,6 @@ import {
 import axios from 'axios';
 
 import ReactDOM from 'react-dom';
-import './index.css';
 import LoginPage from './components/loginPage.jsx';
 import SignupPage from './components/signupPage.jsx';
 import SplashPage from './components/splashPage.jsx';
