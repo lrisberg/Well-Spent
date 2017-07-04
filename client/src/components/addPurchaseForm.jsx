@@ -118,39 +118,45 @@ class AddPurchaseForm extends React.Component {
 
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label>Item Name</label>
-            <input type="text" value={this.state.name} onChange={this.handleChangeName} className="form-control" placeholder="Item Name" />
-          </div>
-          <div className="form-group">
-            <label>Price</label>
-            <div className="input-group">
-              <div className="input-group-addon">$</div>
-              <input value={this.state.price} onChange={this.handleChangePrice} type="number" className="form-control" placeholder="Price (e.g. '10.24')" />
-            </div>
-          </div>
+        <h1 className="page-heading">Add New Purchase</h1>
+        <div className="row">
+          <div className="col-xs-12 col-md-6">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <label>Item Name</label>
+                <input type="text" value={this.state.name} onChange={this.handleChangeName} className="form-control" placeholder="e.g. Blender" />
+              </div>
+              <div className="form-group">
+                <label>Price</label>
+                <div className="input-group">
+                  <div className="input-group-addon">$</div>
+                  <input value={this.state.price} onChange={this.handleChangePrice} type="number" className="form-control" />
+                </div>
+              </div>
 
-          <div className="form-group">
-            <label>Date Purchased</label>
-            <input type="date" value={this.state.date} onChange={this.handleChangeDate} className="form-control" placeholder="Date purchased" />
-          </div>
+              <div className="form-group">
+                <label>Date Purchased</label>
+                <input type="date" value={this.state.date} onChange={this.handleChangeDate} className="form-control" placeholder="Date purchased" />
+              </div>
 
-          <div className="form-group">
-            <label>Category</label>
-            <div className="dropdown">
-              <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                {selectedCategory}
-                <span className="caret"></span>
-              </button>
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                {categoryRows}
-              </ul>
-            </div>
+              <div className="form-group">
+                <label>Category</label>
+                <div className="dropdown">
+                  <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    {selectedCategory}
+                    <span className="caret"></span>
+                  </button>
+                  <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    {categoryRows}
+                  </ul>
+                </div>
+              </div>
+              <div className="page-buttons-inline">
+                <button disabled={!isValid} type="submit" className="btn btn-primary">Add Purchase</button>
+              </div>
+            </form>
           </div>
-
-          <button disabled={!isValid} type="submit" className="btn btn-default">Add Purchase</button>
-        </form>
+        </div>
       </div>
     )
   }
