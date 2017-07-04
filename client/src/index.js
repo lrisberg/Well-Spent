@@ -48,9 +48,9 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <div>
           <Navbar loggedIn={this.state.token !== null} onSignOut={this.destroyToken}/>
-          <div>
+          <div className="container">
             <Route exact path="/" component={SplashPage}/>
             <Route path="/signup" component={SignupPage}/>
             <Route path="/login" render={(props) => <LoginPage onLogin={this.saveToken} />}/>

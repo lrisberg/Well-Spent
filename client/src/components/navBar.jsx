@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class Navbar extends React.Component {
   constructor() {
@@ -32,8 +32,7 @@ class Navbar extends React.Component {
           <Link to="/login">Log In</Link>
         </li>
       )
-    }
-    else {
+    } else {
       signOutButton = (
         <li role="presentation">
           <a onClick={this.signOutFunc}>Sign Out</a>
@@ -57,19 +56,30 @@ class Navbar extends React.Component {
     }
 
     return (
-      <div className="header clearfix">
-        <nav>
-          <ul className="nav nav-pills pull-right">
-            {downloadButton}
-            {dashboardButton}
-            {purchasesButton}
-            {signUpButton}
-            {logInButton}
-            {signOutButton}
-          </ul>
-        </nav>
-        <h3 className="text-muted">Well Spent</h3>
-      </div>
+      <nav className="navbar navbar-default">
+        <div className="container">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-ws-navbar-collapse-1" aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="#">Well Spent</a>
+          </div>
+
+          <div className="collapse navbar-collapse" id="bs-ws-navbar-collapse-1">
+            <ul className="nav navbar-nav navbar-right">
+              {downloadButton}
+              {dashboardButton}
+              {purchasesButton}
+              {signUpButton}
+              {logInButton}
+              {signOutButton}
+            </ul>
+          </div>
+        </div>
+      </nav>
     )
   }
 }
