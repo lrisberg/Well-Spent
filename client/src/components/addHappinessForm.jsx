@@ -78,6 +78,13 @@ class AddHappinessForm extends React.Component {
       const productName = this.state.purchase.name;
       const productPrice = this.state.purchase.price;
       const isValid = this.isFormValid();
+      let remainingNote = null;
+      if (this.state.remainingIds.length > 0) {
+        let numberRemaining = this.state.remainingIds.length;
+        remainingNote = (
+          <span className="remaining-note">{numberRemaining} more to go!</span>
+        )
+      }
       form = (
         <div>
           <div>
@@ -101,6 +108,7 @@ class AddHappinessForm extends React.Component {
 
             </div>
             <button disabled={!isValid} type="submit" className="btn btn-primary">Submit</button>
+            {remainingNote}
           </form>
         </div>
       )
