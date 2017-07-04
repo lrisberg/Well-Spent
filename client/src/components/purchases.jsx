@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 export default class Purchases extends React.Component {
   constructor() {
@@ -23,10 +24,15 @@ export default class Purchases extends React.Component {
     const purchases = this.state.purchases || [];
     const rows = purchases.map((purchase) => {
       let purchasePath = `/purchases/${purchase.id}`;
+
+      let datePurchased = moment(purchase.date).format("MMMM Do, YYYY");
+
       return (
         <tr key={purchase.id}>
           <td><Link to={purchasePath}>{purchase.name}</Link></td>
           <td>{purchase.category_name}</td>
+          <td>${purchase.price}</td>
+          <td>{datePurchased}</td>
         </tr>
       )
     });
@@ -42,6 +48,8 @@ export default class Purchases extends React.Component {
             <tr>
               <th>Name</th>
               <th>Category</th>
+              <th>Price</th>
+              <th>Date Purchased</th>
             </tr>
           </thead>
           <tbody>
