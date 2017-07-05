@@ -68,6 +68,9 @@ router.get('/', checkAuth, (req, res, next) => {
       Promise.all(knexPromises).then(() => {
         res.send({
           numberOfNeedyPurchases: needyPurchases.length,
+          needyPurchases: needyPurchases.map((purchase) => {
+            return purchase.id;
+          }),
           avgHappinessPerPurchase: averageHappinessPerPurchase,
           avgHappinessOverTime: averageHappinessOverTime,
           avgHappinessByCategory: averageHappinessByCategory
