@@ -7,9 +7,9 @@ exports.seed = function(knex, Promise) {
           [{
             id: 1,
             user_id: 1,
-            category_id: 8,
-            name: 'Soy Latte',
-            price: '5.10',
+            category_id: 5,
+            name: 'Sandals',
+            price: '112.87',
             date: new Date('2017-04-15 16:26:16 UTC'),
             created_at: new Date('2017-04-15 14:26:16 UTC'),
             updated_at: new Date('2017-04-15 14:26:16 UTC')
@@ -17,9 +17,9 @@ exports.seed = function(knex, Promise) {
           {
             id: 2,
             user_id: 1,
-            category_id: 5,
-            name: 'Sandals',
-            price: '112.87',
+            category_id: 8,
+            name: 'Soy Latte',
+            price: '5.10',
             date: new Date('2017-06-24 16:26:16 UTC'),
             created_at: new Date('2017-06-24 14:26:16 UTC'),
             updated_at: new Date('2017-06-24 14:26:16 UTC')
