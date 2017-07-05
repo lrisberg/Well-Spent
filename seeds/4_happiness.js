@@ -243,161 +243,161 @@ exports.seed = function(knex, Promise) {
             updated_at: new Date('2017-06-28 15:26:16 UTC')
           },
           {
-            id: 29,
+            id: 35,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-06-15 15:26:16 UTC'),
             updated_at: new Date('2017-06-15 15:26:16 UTC')
           },
           {
-            id: 30,
+            id: 36,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-06-16 15:26:16 UTC'),
             updated_at: new Date('2017-06-16 15:26:16 UTC')
           },
           {
-            id: 31,
+            id: 37,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-06-17 15:26:16 UTC'),
             updated_at: new Date('2017-06-17 15:26:16 UTC')
           },
           {
-            id: 32,
+            id: 38,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-06-18 15:26:16 UTC'),
             updated_at: new Date('2017-06-18 15:26:16 UTC')
           },
           {
-            id: 33,
+            id: 39,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-06-19 15:26:16 UTC'),
             updated_at: new Date('2017-06-19 15:26:16 UTC')
           },
           {
-            id: 34,
+            id: 40,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-06-20 15:26:16 UTC'),
             updated_at: new Date('2017-06-20 15:26:16 UTC')
           },
           {
-            id: 35,
+            id: 41,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-06-21 15:26:16 UTC'),
             updated_at: new Date('2017-06-21 15:26:16 UTC')
           },
           {
-            id: 36,
+            id: 42,
             purchase_id: 3,
             happiness: 5,
             created_at: new Date('2017-06-22 15:26:16 UTC'),
             updated_at: new Date('2017-06-22 15:26:16 UTC')
           },
           {
-            id: 37,
+            id: 43,
             purchase_id: 3,
             happiness: 5,
             created_at: new Date('2017-06-23 15:26:16 UTC'),
             updated_at: new Date('2017-06-23 15:26:16 UTC')
           },
           {
-            id: 38,
+            id: 44,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-06-24 15:26:16 UTC'),
             updated_at: new Date('2017-06-24 15:26:16 UTC')
           },
           {
-            id: 39,
+            id: 45,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-06-25 15:26:16 UTC'),
             updated_at: new Date('2017-06-25 15:26:16 UTC')
           },
           {
-            id: 40,
+            id: 46,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-06-26 15:26:16 UTC'),
             updated_at: new Date('2017-06-26 15:26:16 UTC')
           },
           {
-            id: 41,
+            id: 47,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-06-27 15:26:16 UTC'),
             updated_at: new Date('2017-06-27 15:26:16 UTC')
           },
           {
-            id: 42,
+            id: 48,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-06-28 15:26:16 UTC'),
             updated_at: new Date('2017-06-28 15:26:16 UTC')
           },
           {
-            id: 43,
+            id: 49,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-06-29 15:26:16 UTC'),
             updated_at: new Date('2017-06-29 15:26:16 UTC')
           },
           {
-            id: 44,
+            id: 50,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-06-30 15:26:16 UTC'),
             updated_at: new Date('2017-06-30 15:26:16 UTC')
           },
           {
-            id: 45,
+            id: 51,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-07-01 15:26:16 UTC'),
             updated_at: new Date('2017-07-01 15:26:16 UTC')
           },
           {
-            id: 46,
+            id: 52,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-07-02 15:26:16 UTC'),
             updated_at: new Date('2017-07-02 15:26:16 UTC')
           },
           {
-            id: 47,
+            id: 53,
             purchase_id: 3,
             happiness: 6,
             created_at: new Date('2017-07-03 15:26:16 UTC'),
             updated_at: new Date('2017-07-03 15:26:16 UTC')
           },
           {
-            id: 47,
+            id: 54,
             purchase_id: 3,
             happiness: 7,
             created_at: new Date('2017-07-04 15:26:16 UTC'),
             updated_at: new Date('2017-07-04 15:26:16 UTC')
           },
           {
-            id: 48,
+            id: 55,
             purchase_id: 4,
             happiness: 7,
             created_at: new Date('2017-06-23 15:26:16 UTC'),
             updated_at: new Date('2017-06-23 15:26:16 UTC')
           },
           {
-            id: 49,
+            id: 56,
             purchase_id: 4,
             happiness: 7,
             created_at: new Date('2017-06-24 15:26:16 UTC'),
             updated_at: new Date('2017-06-24 15:26:16 UTC')
           },
           {
-            id: 50,
+            id: 57,
             purchase_id: 4,
             happiness: 6,
             created_at: new Date('2017-06-25 15:26:16 UTC'),
