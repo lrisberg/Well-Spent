@@ -16,11 +16,11 @@ import { scaleTime } from 'd3-scale';
 
 import {
   happinessTicks,
-  happinessFormatter,
   makeDailyTimelineTicks,
   dayMonthFormatter,
   happinessDomain,
-  makeChartPanel
+  makeChartPanel,
+  HappinessAxisTick
 } from '../charting';
 
 export default class Dashboard extends React.Component {
@@ -76,7 +76,7 @@ export default class Dashboard extends React.Component {
         <ResponsiveContainer>
           <BarChart data={bestData}>
             <XAxis dataKey="name" />
-            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter} />
+            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tick={<HappinessAxisTick/>} />
             <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6"/>
           </BarChart>
         </ResponsiveContainer>
@@ -89,7 +89,7 @@ export default class Dashboard extends React.Component {
         <ResponsiveContainer>
           <BarChart data={worstData}>
           <XAxis dataKey="name" />
-          <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter} />
+          <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tick={<HappinessAxisTick/>} />
           <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
         </BarChart>
       </ResponsiveContainer>
@@ -117,7 +117,7 @@ export default class Dashboard extends React.Component {
           <LineChart data={averageHappinessOverTimeData}>
             <Line type="monotone" dataKey="happiness" stroke="#196DB6" />
             <XAxis dataKey="time" ticks={ticks} scale={scale} tickFormatter={dayMonthFormatter} />
-            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter} />
+            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tick={<HappinessAxisTick/>} />
           </LineChart>
         </ResponsiveContainer>
       )
@@ -137,7 +137,7 @@ export default class Dashboard extends React.Component {
         <ResponsiveContainer>
           <BarChart data={averageHappinessByCategoryData}>
             <XAxis dataKey="category" />
-            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter} />
+            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tick={<HappinessAxisTick/>} />
             <Bar type="monotone" dataKey="happiness" barSize={30} fill="#196DB6" />
           </BarChart>
         </ResponsiveContainer>

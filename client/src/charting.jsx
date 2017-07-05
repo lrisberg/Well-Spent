@@ -10,7 +10,7 @@ export const happinessFormatter = (happiness) => {
     return "😐"
   }
   else if (happiness === 7) {
-    return "🙂"
+    return "😀"
   }
   return happiness;
 };
@@ -28,6 +28,18 @@ export function makeDailyTimelineTicks(firstTimeVal, lastTimeVal) {
 export const dayMonthFormatter = (timeValue) => {
   return moment(timeValue).format('MM/DD');
 }
+
+export const HappinessAxisTick = React.createClass({
+  render () {
+    const {x, y, stroke, payload} = this.props;
+    const happiness = happinessFormatter(payload.value);
+   	return (
+    	<g transform={`translate(${x},${y})`}>
+        <text fontSize="40" x={-5} y={0} dy={16} textAnchor="end" fill="#666">{happiness}</text>
+      </g>
+    );
+  }
+});
 
 export function makeChartPanel(chart, options) {
   let titleElement;

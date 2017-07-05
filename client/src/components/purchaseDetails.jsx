@@ -13,11 +13,11 @@ import { scaleTime } from 'd3-scale';
 
 import {
   happinessTicks,
-  happinessFormatter,
   makeDailyTimelineTicks,
   dayMonthFormatter,
   happinessDomain,
-  makeChartPanel
+  makeChartPanel,
+  HappinessAxisTick
 } from '../charting';
 
 
@@ -113,7 +113,7 @@ export default class PurchaseDetails extends React.Component {
           <LineChart width={800} height={400} data={chartData}>
             <Line type="monotone" dataKey="happiness" stroke="#196DB6" />
             <XAxis scale={scale} dataKey="time" tickFormatter={dayMonthFormatter} ticks={ticks}/>
-            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tickFormatter={happinessFormatter}/>
+            <YAxis dataKey="happiness" domain={happinessDomain} ticks={happinessTicks} tick={<HappinessAxisTick/>}/>
           </LineChart>
         </ResponsiveContainer>
       )
