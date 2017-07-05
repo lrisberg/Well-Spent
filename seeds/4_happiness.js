@@ -104,99 +104,141 @@ exports.seed = function(knex, Promise) {
           },
           {
             id: 15,
+            purchase_id: 1,
+            happiness: 1,
+            created_at: new Date('2017-06-29 15:26:16 UTC'),
+            updated_at: new Date('2017-06-29 15:26:16 UTC')
+          },
+          {
+            id: 16,
+            purchase_id: 1,
+            happiness: 1,
+            created_at: new Date('2017-06-30 15:26:16 UTC'),
+            updated_at: new Date('2017-06-30 15:26:16 UTC')
+          },
+          {
+            id: 17,
+            purchase_id: 1,
+            happiness: 1,
+            created_at: new Date('2017-07-01 15:26:16 UTC'),
+            updated_at: new Date('2017-07-01 15:26:16 UTC')
+          },
+          {
+            id: 18,
+            purchase_id: 1,
+            happiness: 1,
+            created_at: new Date('2017-07-02 15:26:16 UTC'),
+            updated_at: new Date('2017-07-02 15:26:16 UTC')
+          },
+          {
+            id: 19,
+            purchase_id: 1,
+            happiness: 1,
+            created_at: new Date('2017-07-03 15:26:16 UTC'),
+            updated_at: new Date('2017-07-03 15:26:16 UTC')
+          },
+          {
+            id: 20,
+            purchase_id: 1,
+            happiness: 1,
+            created_at: new Date('2017-07-04 15:26:16 UTC'),
+            updated_at: new Date('2017-07-04 15:26:16 UTC')
+          },
+          {
+            id: 21,
             purchase_id: 2,
-            happiness: 6,
+            happiness: 7,
             created_at: new Date('2017-06-15 15:26:16 UTC'),
             updated_at: new Date('2017-06-15 15:26:16 UTC')
           },
           {
-            id: 16,
+            id: 22,
             purchase_id: 2,
-            happiness: 4,
+            happiness: 7,
             created_at: new Date('2017-06-16 15:26:16 UTC'),
             updated_at: new Date('2017-06-16 15:26:16 UTC')
           },
           {
-            id: 17,
+            id: 23,
             purchase_id: 2,
-            happiness: 2,
+            happiness: 6,
             created_at: new Date('2017-06-17 15:26:16 UTC'),
             updated_at: new Date('2017-06-17 15:26:16 UTC')
           },
           {
-            id: 18,
+            id: 24,
             purchase_id: 2,
-            happiness: 1,
+            happiness: 3,
             created_at: new Date('2017-06-18 15:26:16 UTC'),
             updated_at: new Date('2017-06-18 15:26:16 UTC')
           },
           {
-            id: 19,
+            id: 25,
             purchase_id: 2,
             happiness: 2,
             created_at: new Date('2017-06-19 15:26:16 UTC'),
             updated_at: new Date('2017-06-19 15:26:16 UTC')
           },
           {
-            id: 20,
+            id: 26,
             purchase_id: 2,
-            happiness: 1,
+            happiness: 2,
             created_at: new Date('2017-06-20 15:26:16 UTC'),
             updated_at: new Date('2017-06-20 15:26:16 UTC')
           },
           {
-            id: 21,
+            id: 27,
             purchase_id: 2,
-            happiness: 3,
+            happiness: 2,
             created_at: new Date('2017-06-21 15:26:16 UTC'),
             updated_at: new Date('2017-06-21 15:26:16 UTC')
           },
           {
-            id: 22,
+            id: 28,
             purchase_id: 2,
-            happiness: 2,
+            happiness: 3,
             created_at: new Date('2017-06-22 15:26:16 UTC'),
             updated_at: new Date('2017-06-22 15:26:16 UTC')
           },
           {
-            id: 23,
+            id: 29,
             purchase_id: 2,
-            happiness: 1,
+            happiness: 3,
             created_at: new Date('2017-06-23 15:26:16 UTC'),
             updated_at: new Date('2017-06-23 15:26:16 UTC')
           },
           {
-            id: 24,
+            id: 30,
             purchase_id: 2,
             happiness: 2,
             created_at: new Date('2017-06-24 15:26:16 UTC'),
             updated_at: new Date('2017-06-24 15:26:16 UTC')
           },
           {
-            id: 25,
+            id: 31,
             purchase_id: 2,
-            happiness: 1,
+            happiness: 2,
             created_at: new Date('2017-06-25 15:26:16 UTC'),
             updated_at: new Date('2017-06-25 15:26:16 UTC')
           },
           {
-            id: 26,
+            id: 32,
             purchase_id: 2,
-            happiness: 4,
+            happiness: 2,
             created_at: new Date('2017-06-26 15:26:16 UTC'),
             updated_at: new Date('2017-06-26 15:26:16 UTC')
           },
           {
-            id: 27,
+            id: 33,
             purchase_id: 2,
-            happiness: 3,
+            happiness: 1,
             created_at: new Date('2017-06-27 15:26:16 UTC'),
             updated_at: new Date('2017-06-27 15:26:16 UTC')
           },
           {
-            id: 28,
+            id: 34,
             purchase_id: 2,
-            happiness: 4,
+            happiness: 1,
             created_at: new Date('2017-06-28 15:26:16 UTC'),
             updated_at: new Date('2017-06-28 15:26:16 UTC')
           },
@@ -231,42 +273,42 @@ exports.seed = function(knex, Promise) {
           {
             id: 33,
             purchase_id: 3,
-            happiness: 6,
+            happiness: 7,
             created_at: new Date('2017-06-19 15:26:16 UTC'),
             updated_at: new Date('2017-06-19 15:26:16 UTC')
           },
           {
             id: 34,
             purchase_id: 3,
-            happiness: 6,
+            happiness: 7,
             created_at: new Date('2017-06-20 15:26:16 UTC'),
             updated_at: new Date('2017-06-20 15:26:16 UTC')
           },
           {
             id: 35,
             purchase_id: 3,
-            happiness: 7,
+            happiness: 6,
             created_at: new Date('2017-06-21 15:26:16 UTC'),
             updated_at: new Date('2017-06-21 15:26:16 UTC')
           },
           {
             id: 36,
             purchase_id: 3,
-            happiness: 7,
+            happiness: 5,
             created_at: new Date('2017-06-22 15:26:16 UTC'),
             updated_at: new Date('2017-06-22 15:26:16 UTC')
           },
           {
             id: 37,
             purchase_id: 3,
-            happiness: 7,
+            happiness: 5,
             created_at: new Date('2017-06-23 15:26:16 UTC'),
             updated_at: new Date('2017-06-23 15:26:16 UTC')
           },
           {
             id: 38,
             purchase_id: 3,
-            happiness: 7,
+            happiness: 6,
             created_at: new Date('2017-06-24 15:26:16 UTC'),
             updated_at: new Date('2017-06-24 15:26:16 UTC')
           },
@@ -300,22 +342,64 @@ exports.seed = function(knex, Promise) {
           },
           {
             id: 43,
-            purchase_id: 4,
+            purchase_id: 3,
+            happiness: 7,
+            created_at: new Date('2017-06-29 15:26:16 UTC'),
+            updated_at: new Date('2017-06-29 15:26:16 UTC')
+          },
+          {
+            id: 44,
+            purchase_id: 3,
+            happiness: 7,
+            created_at: new Date('2017-06-30 15:26:16 UTC'),
+            updated_at: new Date('2017-06-30 15:26:16 UTC')
+          },
+          {
+            id: 45,
+            purchase_id: 3,
             happiness: 6,
+            created_at: new Date('2017-07-01 15:26:16 UTC'),
+            updated_at: new Date('2017-07-01 15:26:16 UTC')
+          },
+          {
+            id: 46,
+            purchase_id: 3,
+            happiness: 6,
+            created_at: new Date('2017-07-02 15:26:16 UTC'),
+            updated_at: new Date('2017-07-02 15:26:16 UTC')
+          },
+          {
+            id: 47,
+            purchase_id: 3,
+            happiness: 6,
+            created_at: new Date('2017-07-03 15:26:16 UTC'),
+            updated_at: new Date('2017-07-03 15:26:16 UTC')
+          },
+          {
+            id: 47,
+            purchase_id: 3,
+            happiness: 7,
+            created_at: new Date('2017-07-04 15:26:16 UTC'),
+            updated_at: new Date('2017-07-04 15:26:16 UTC')
+          },
+          {
+            id: 48,
+            purchase_id: 4,
+            happiness: 7,
             created_at: new Date('2017-06-23 15:26:16 UTC'),
             updated_at: new Date('2017-06-23 15:26:16 UTC')
           },
           {
-            id: 44,
+            id: 49,
             purchase_id: 4,
-            happiness: 6,
+            happiness: 7,
             created_at: new Date('2017-06-24 15:26:16 UTC'),
             updated_at: new Date('2017-06-24 15:26:16 UTC')
           },
           {
-            id: 45,
+            id: 50,
             purchase_id: 4,
-            happiness: 5,
+            happiness: 6,
             created_at: new Date('2017-06-25 15:26:16 UTC'),
             updated_at: new Date('2017-06-25 15:26:16 UTC')
           },])
