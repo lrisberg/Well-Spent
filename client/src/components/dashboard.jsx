@@ -60,9 +60,13 @@ export default class Dashboard extends React.Component {
         let remainingIds = this.state.dashboard.needyPurchases.slice(1);
         let remaining = remainingIds.join(',');
         let firstUrl = `/purchases/${firstId}/happiness/new?remaining=${remaining}`;
+        let purchaseDisplay = 'purchases';
+        if (this.state.dashboard.numberOfNeedyPurchases === 1) {
+          purchaseDisplay = 'purchase';
+        }
         happinessAlert = (
           <div className="alert alert-info" role="alert">
-            <Link to={firstUrl}>You have {this.state.dashboard.numberOfNeedyPurchases} purchases ready for your input.</Link>
+            <Link to={firstUrl}>You have {this.state.dashboard.numberOfNeedyPurchases} {purchaseDisplay} ready for your input.</Link>
           </div>
         )
       }
